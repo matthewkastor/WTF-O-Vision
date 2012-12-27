@@ -1,3 +1,4 @@
+/* scroll to the bottom of this file to alter what gets WTFified. Change atropa.wtfDict to change text transformations. */
 var atropa = {};
 atropa.regex = {};
 atropa.wtfDict = {
@@ -380,6 +381,9 @@ atropa.wtf = function (target) {
 	return target;
 };
 
+/* Get the element with the text to be WTFified */
 tardy = document.getElementsByClassName('content')[0];
+/* Run atropa.wtf on the textContent / value of an element */
 txt =  atropa.wtf(tardy.textContent);
+/* Replace the element with a pre block and style with black words on white background. Put the WTFified text in this pre block.  */
 tardy.innerHTML = '<pre style="color:black; background:white;">' + txt + '</pre>';
