@@ -582,4 +582,4 @@ atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
 };
 
 
-atropa.wtf.htmlElement(document.getElementsByClassName('content')[0]);
+// atropa.wtf.htmlElement(document.getElementsByClassName('content')[0]);
