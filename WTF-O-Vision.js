@@ -42,6 +42,14 @@ atropa.wtf = {};
  */
 atropa.wtf.dictionary = {
 	"novelty quickly wears off" : "dumb shit gits old fast",
+	"the way it is" : "how it be",
+	"put up with" : "manhandle",
+	"yet" : "immediately",
+	"forget" : "disremember",
+	"lose" : "shake",
+	"for no reason" : "maiacally",
+	"given a choice" : "extorted",
+	"not strong enough" : "ain't got the nuts",
 	"now at an end" : "brand spankin new",
 	"be together" : "mash up",
 	"apocalypse" : "party time",
@@ -64,10 +72,16 @@ atropa.wtf.dictionary = {
 	"by my side" : "on my ass",
 	"by his side" : "on his ass",
 	"by her side" : "on her ass",
+	"leave your side" : "get off your ass",
+	"leave my side"   : "get off my ass",
+	"leave his side"  : "get off his ass",
+	"leave her side"  : "get off her ass",
 	"doesn't happen over" : "cartwheels straight across",
-	"means many things" : "is best described with lies",
+	"means many things" : "is best described with fibs",
 	"laying in bed" : "taking a shit",
-	"promise" : "lie",
+	"promise" : "fib",
+	"lie" : "fib",
+	"raven" : "pigeon",
 	"to get away" : "to fucking run",
 	"to a better" : "for some glittered",
 	"beautiful face" : "enormous tits",
@@ -189,6 +203,7 @@ atropa.wtf.dictionary = {
 	"feel" : "fondle",
 	"woe" : "chlamydia",
 	"empty" : "bloated",
+	"hatred" : "odium",
 	"hate" : "dislike",
 	"scarred" : "striated",
 	"scars" : "striae",
@@ -219,8 +234,10 @@ atropa.wtf.dictionary = {
 	"heart" : "loin",
 	"blood" : "grease",
 	"bleed" : "whine",
+	"cut" : "mutilate",
+	"slash" : "mutilate",
 	"moonlight" : "moonshine",
-	"moon" : "cheese",
+	"moon" : "night light",
 	"steel" : "latex",
 	"knife" : "spatula",
 	"razorblade" : "spatula handle",
@@ -231,8 +248,9 @@ atropa.wtf.dictionary = {
 	"emotion" : "laxative",
 	"teardrop" : "tear drop",
 	"tear" : "urine",
+	"castle" : "chateau",
 	"world" : "hand towel",
-	"dead" : "fishy",
+	"dead" : "inert",
 	"goodbye" : "peace y'all",
 	"good-bye" : "get the fuck out",
 	"death" : "Santa",
@@ -255,10 +273,11 @@ atropa.wtf.dictionary = {
 	"i'll" : "i will",
 	"i am" : "i are",
 	"i" : "Spongebob",
+	"myself" : "my muchness",
 	"me" : "Spongebob",
 	"my" : "Spongebob's ",
 	"mine" : "Spongebob's",
-	"yourself" : "you",
+	"yourself" : "your muchness",
 	"yours" : "you's",
 	"your" : "you's",
 	"you all" : "all you",
@@ -269,6 +288,7 @@ atropa.wtf.dictionary = {
 	"thee" : "you",
 	"thine" : "you's",
 	"you" : "Patrick",
+	"think" : "contemplate",
 	"spiritual" : "banana craving",
 	"spirit" : "banana",
 	"soul" : "banana",
@@ -318,6 +338,8 @@ atropa.wtf.dictionary = {
 	"sun" : "yellow disk",
 	"cruel" : "haphazard",
 	"cloud" : "balloon",
+	"twinkle" : "strobe",
+	"twinkling" : "strobing",
 	"escape" : "snuggle",
 	"understand" : "stroke my ego",
 	"remember" : "mumble",
@@ -431,7 +453,7 @@ atropa.wtf.dictionary = {
  * @param {String} target The text to WTFify.
  * @return {String} Returns Genuine WTFified text.
  */
-atropa.wtf.wtfify = function (target) {
+atropa.wtf.wtfify = function (target, isHTML) {
 	"use strict";
 	var regexValue,
 	replacementText,
@@ -441,9 +463,15 @@ atropa.wtf.wtfify = function (target) {
 	wordCount,
 	ret;
 	
+	if(true !== isHTML) {
+		isHTML = false;
+	}
 	ret = {};
 	wtfCount = 0;
 	target = target.trim();
+	if(true === isHTML) {
+		target = '<p> ' + target.replace(/(\r\n|\r|\n)/g,' <br/>') + ' </p>';
+	}
 	wordCount = atropa.string.countWords(target);
 	/**
 	 * Accepts plain text input and Gloriously WTFifies it.
@@ -459,7 +487,13 @@ atropa.wtf.wtfify = function (target) {
 	 */
 	replacementText = function (m, sub1, sub2) {
 		wtfCount++;
-		return sub1 + atropa.wtf.dictionary[x] + sub2;
+		var out;
+		if(true === isHTML) {
+			out = '<span style="color : red ;">' + sub1 + atropa.wtf.dictionary[x] + sub2 + '</span>';
+		} else {
+			out = sub1 + atropa.wtf.dictionary[x] + sub2;
+		}
+		return out;
 	};
 	for (x in atropa.wtf.dictionary) {
 		if (atropa.wtf.dictionary.hasOwnProperty(x)) {
@@ -485,8 +519,8 @@ atropa.wtf.wtfify = function (target) {
  */
 atropa.wtf.htmlElement = function(elementReference) {
 	"use strict";
-	var wtfified = atropa.wtf.wtfify(elementReference.textContent);
-	elementReference.innerHTML = '<pre style="color:black; background:white; white-space:pre-wrap;">' + wtfified.txt + '</pre>';
+	var wtfified = atropa.wtf.wtfify(elementReference.textContent, true);
+	elementReference.innerHTML = '<div style="color:black; background:white; white-space:pre-wrap;">' + wtfified.txt + '</div>';
 };
 
 
