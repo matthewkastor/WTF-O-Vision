@@ -8,7 +8,7 @@
  */
 
 
-/*jslint indent: 4, maxerr: 50, white: true, browser: true, devel: true, plusplus: true */
+/*jslint indent: 4, maxerr: 50, white: true, browser: true, devel: true, plusplus: true, regexp: true */
 /*global XPathResult */
 
 /**
@@ -31,21 +31,19 @@ atropa = {};
  * @namespace Container for all Glorious WTFifier related functions and such.
  */
 atropa.wtf = {};
-
 /**
  * The Glorious WTFification Dictionary: Turning Shit
  * Into Polished Turds.
  * @author <a href="mailto:matthewkastor@gmail.com">
  * Matthew Christopher Kastor-Inare III </a><br />
  * ☭ Hial Atropa!! ☭
- * @version 20130101
+ * @version 20130110
  */
 atropa.wtf.dictionary = {
 	"novelty quickly wears off" : "dumb shit gits old fast",
 	"the way it is" : "how it be",
 	"put up with" : "manhandle",
 	"yet" : "immediately",
-	"forget" : "disremember",
 	"lose" : "shake",
 	"for no reason" : "maiacally",
 	"given a choice" : "extorted",
@@ -55,6 +53,8 @@ atropa.wtf.dictionary = {
 	"apocalypse" : "party time",
 	"nothing is assured" : "we live to deliver",
 	"to no avail" : "for great good",
+	"too good to be true" : "fucking fantastic",
+	"growing apart" : "fucking other people",
 	"rest in peace" : "party like it's 1999",
 	"back stab" : "rump shake",
 	"back stabb" : "rump shake",
@@ -77,17 +77,27 @@ atropa.wtf.dictionary = {
 	"leave his side"  : "get off his ass",
 	"leave her side"  : "get off her ass",
 	"doesn't happen over" : "cartwheels straight across",
-	"means many things" : "is best described with fibs",
+	"means many things" : "is best described with lies",
 	"laying in bed" : "taking a shit",
-	"promise" : "fib",
+	"promise" : "lie",
+	"liar" : "fibber",
 	"lie" : "fib",
+	"lies" : "fibs",
+	"what's the point" : "the fucks this mean",
+	"it must be true" : "for real 'n' shit",
+	"what people say" : "muthaphukkas be talkin",
+	"etched" : "ground",
+	"don't have a clue" : "got shit twisted",
+	"viscious cycle" : "clusterfuck",
+	"don't need" : "could give a fuck about",
 	"raven" : "pigeon",
 	"to get away" : "to fucking run",
 	"to a better" : "for some glittered",
 	"beautiful face" : "enormous tits",
 	"might as well" : "oh fuck I oughtta",
+	"the first moment" : "straightaway",
 	"as well" : "also",
-	"so good" : "like two cheeseburgers and a chocolate shake",
+	"so good" : "neato",
 	"could do anything" : "is fucking insane",
 	"set the mood" : "whip it out",
 	"baby if" : "look bitch,",
@@ -103,9 +113,11 @@ atropa.wtf.dictionary = {
 	"standing out from the crowd" : "wobbling like an elephant on a bicycle",
 	"stood out from the crowd" : "jiggled like a jello Santa",
 	"stand out from the crowd" : "look like a jackass",
-	"stands out from the crowd" : "smells like old milk",
+	"stands out from the crowd" : "smells like old dick",
 	"i've never felt this way" : "i've done this",
 	"with every fiber" : "from pithy pits",
+	"wander" : "stumble",
+	"haunt" : "stalk",
 	"mask" : "trashbag",
 	"demonic angel" : "ass pirate",
 	"angelic demon" : "ass pirate",
@@ -126,35 +138,47 @@ atropa.wtf.dictionary = {
 	"the best" : "the baddest",
 	"selfish" : "thieving",
 	"walked out" : "narrowly escaped",
+	"walk out" : "narrowly escape",
+	"walking out" : "narrowly escaping",
 	"got in your way" : "got all up in your shit",
 	"try" : "shoot",
-	"the point of no return" : "The Krusty Krab",
+	"the point of no return" : "the fat girls bedrooom door",
 	"only wanted" : "begged for",
 	"guess it doesn't matter" : "know this shit is pointless",
 	"look back" : "lick windows",
 	"path" : "sidewalk",
 	"shine" : "bling",
-	"in the middle of" : "dead nuts on",
+	"in the middle of" : "all up in",
 	"deep down inside" : "in the bottom of the tank",
 	"piece by piece" : "one handjob at a time",
-	"im" : "This Asshole",
 	"aura" : "stench",
 	"candle" : "glowstick",
-	"for he" : "this dumb mother fucker",
+	"for her" : "to that broads",
 	"for she" : "'cause the cunt",
+	"for he" : "this dumb mother fucker",
 	"forest" : "campground",
 	"hand in hand" : "cock to jaw",
+	"hand to hold" : "nuts to grip",
 	"girl meets boy" : "horny kids hook up",
 	"boy meets girl" : "horny kids hook up",
 	"sunny" : "sweltering",
 	"so nervous" : "so fucking drunk",
 	"kiss" : "slap",
 	"fingertips" : "chicken nuggets",
-	"tell you i'm fine" : "screm I'm all-fuckin-right",
+	"tell you i'm fine" : "screm I'M FUCKIN OK",
 	"write" : "scrawl",
 	"written" : "scrawled",
 	"wrote" : "scrawled",
 	"first of all" : "mm-kay",
+	"bring forth" : "whip out",
+	"into the light" : "on to the light",
+	"the only one" : "fucking stupid",
+	"to the light" : "out in public",
+	"talk" : "cuss",
+	"full of life" : "full of shit",
+	"can't find the words to say" : "could blurt out some dumb shit",
+	"consume" : "suck",
+	"consuming" : "sucking",
 	"pillow" : "stone",
 	"advice" : "bullshit",
 	"universe" : "toilet bowl",
@@ -179,8 +203,22 @@ atropa.wtf.dictionary = {
 	"torment" : "tickle",
 	"incantation" : "much yammering",
 	"hopeless" : "pitiful",
+	"depressing" : "inebriating",
+	"depressed" : "drunk",
 	"depression" : "so much booze",
 	"saddened" : "made flaccid",
+	"sadness" : "impotence",
+	"neverending" : "never ending",
+	"never ending" : "relentless",
+	"never going" : "fucked for trying",
+	"change one thing" : "fuck some'n up",
+	"never end" : "drag on",
+	"will not heal" : "festers",
+	"outward appearance" : "facade",
+	"emo" : "closet homo",
+	"blackened walls" : "filthy rooms",
+	"farewell" : "adios",
+	"meet again" : "have another go-round",
 	"sadd" : "flaccid",
 	"sad" : "impotent",
 	"amidst" : "all up in",
@@ -212,11 +250,11 @@ atropa.wtf.dictionary = {
 	"scar" : "stria",
 	"wound" : "ouchie",
 	"slit" : "crevice",
-	"slice" : "stroke",
-	"twas" : "i'was",
+	"slice" : "pet",
+	"twas" : "it was",
 	"big brother" : "my paranoia",
 	"eternity" : "awhile",
-	"eternally" : "for a grip",
+	"eternally" : "for a bit",
 	"eternal" : "imagined",
 	"prophet" : "insomniac",
 	"prophecies" : "wives tales",
@@ -225,13 +263,13 @@ atropa.wtf.dictionary = {
 	"militia" : "gang",
 	"military" : "gangster",
 	"militant" : "maniacal",
-	"goddess" : "kylee strutt",
+	"goddess" : "Kylee Strutt",
 	"higher power" : "crusty sock",
-	"dark" : "smog",
+	"dark" : "effervescent",
 	"ancient" : "elderly",
 	"quest" : "stroll",
-	"heartbeat" : "loin-beat",
-	"heart" : "loin",
+	"heartbeat" : "cock beat",
+	"heart" : "cock",
 	"blood" : "grease",
 	"bleed" : "whine",
 	"cut" : "mutilate",
@@ -239,63 +277,45 @@ atropa.wtf.dictionary = {
 	"moonlight" : "moonshine",
 	"moon" : "night light",
 	"steel" : "latex",
-	"knife" : "spatula",
-	"razorblade" : "spatula handle",
-	"razor" : "spatula",
+	"knife" : "dildo",
+	"razorblade" : "butt plug",
+	"razor" : "dildo",
 	"blade" : "handle",
-	"pain" : "diarrhea",
+	"pain" : "hot sex",
 	"emotional" : "childish",
-	"emotion" : "laxative",
+	"emotion" : "lubricant",
 	"teardrop" : "tear drop",
-	"tear" : "urine",
+	"tear" : "sperme",
 	"castle" : "chateau",
 	"world" : "hand towel",
 	"dead" : "inert",
 	"goodbye" : "peace y'all",
 	"good-bye" : "get the fuck out",
+	"good bye" : "fuck off",
 	"death" : "Santa",
-	"pale" : "pasty",
+	"pale" : "sexy",
 	"drift" : "him-haw",
 	"fade" : "him-haw",
 	"flesh" : "twinkie",
 	"corpse" : "mannequin",
 	"skin" : "twinkies",
-	"putrid" : "pureed",
-	"breathe" : "wheeze",
-	"breath" : "nasal whistle",
+	"putrid" : "pleasant",
+	"breathe" : "pause awkwardly",
+	"breath" : "awkward pause",
 	"stopp" : "push",
 	"stop" : "push",
 	"scream" : "grunt",
-	"was i" : "were i",
-	"am i" : "are i",
-	"i'm" : "i are",
-	"i've" : "i have",
-	"i'll" : "i will",
-	"i am" : "i are",
-	"i" : "Spongebob",
-	"myself" : "my muchness",
-	"me" : "Spongebob",
-	"my" : "Spongebob's ",
-	"mine" : "Spongebob's",
-	"yourself" : "your muchness",
-	"yours" : "you's",
-	"your" : "you's",
-	"you all" : "all you",
-	"you'll" : "you will",
-	"you've" : "you has",
-	"you're" : "you is",
-	"suffer" : "pirouette",
-	"thee" : "you",
-	"thine" : "you's",
-	"you" : "Patrick",
-	"think" : "contemplate",
+	"think" : "scheme",
 	"spiritual" : "banana craving",
 	"spirit" : "banana",
 	"soul" : "banana",
 	"ghost" : "imaginary friend",
-	"monster" : "ferret",
-	"beast" : "marmot",
-	"demon" : "squirrel",
+	"monster" : "dislexic lover",
+	"beast" : "erection",
+	"demon" : "hard-on",
+	"angel" : "porn star",
+	"shooting star" : "swift missile",
+	"star" : "missile",
 	"lost" : "aroused",
 	"time" : "throbbing",
 	"cheek" : "rump",
@@ -303,26 +323,27 @@ atropa.wtf.dictionary = {
 	"daydream" : "fantasize",
 	"the spring" : "tube sock",
 	"spring" : "tube socks",
-	"illusion" : "fun house",
+	"illusion" : "drunken mistake",
 	"loneliness" : "arousal",
 	"lonely" : "horny",
 	"alone" : "ecstatic",
 	"lone" : "single",
-	"perfect" : "retarded",
+	"perfect" : "fucked",
 	"hidden" : "stashed",
 	"mystery" : "neon sign",
 	"mysteries" : "neon signs",
 	"rose" : "butt hole",
+	"petal" : "dingleberry",
 	"different" : "awkward",
 	"wrong" : "buzzing",
 	"fate" : "coincidence",
 	"cold" : "fuzzy",
 	"hellfire" : "hell fire",
-	"hell" : "my loins",
+	"hell" : "my cock's",
 	"crystal" : "bedazler",
 	"rainbow" : "pizzazz",
-	"rain" : "leak",
-	"storm" : "hugfest",
+	"rain" : "jizzum",
+	"storm" : "orgy",
 	"wind" : "blow",
 	"breeze" : "draft",
 	"brilliance" : "shinyness",
@@ -349,13 +370,14 @@ atropa.wtf.dictionary = {
 	"bound" : "coddled",
 	"torn" : "huggled",
 	"died" : "made marshmallows",
+	"dies" : "makes marshmallows",
 	"die" : "make marshmallows",
 	"dying" : "making marshmallows",
 	"body" : "jiggling clump",
 	"bodies" : "jiggling piles",
 	"warfare" : "children laughing",
-	"debutantes" : "bums and hookers",
-	"slave" : "disgruntled working folk",
+	"debutantes" : "hookers",
+	"slave" : "gimp",
 	"poetic" : "flatulent",
 	"poetry" : "bad gas",
 	"poet" : "hobo",
@@ -368,7 +390,7 @@ atropa.wtf.dictionary = {
 	"healer" : "fondler",
 	"gods" : "jim bob sr et al.",
 	"god" : "jim bob sr",
-	"weapon" : "waffle bat",
+	"weapon" : "pocket pussy",
 	"existence" : "whatever",
 	"minion" : "horny pirate",
 	"raping" : "what",
@@ -378,9 +400,11 @@ atropa.wtf.dictionary = {
 	"infinite" : "abstract",
 	"suicide" : "murder",
 	"brink" : "border",
-	"cried" : "urinated",
-	"cries" : "urinating",
-	"cry" : "urinate",
+	"cried" : "came",
+	"cries" : "skeets",
+	"crying" : "cumming",
+	"had done" : "done did",
+	"cry" : "cum",
 	"cryptic" : "drunken",
 	"crypt" : "urinal",
 	"mystic" : "transexual",
@@ -414,7 +438,7 @@ atropa.wtf.dictionary = {
 	"wretch" : "skeeze",
 	"awe" : "fearful reverence",
 	"ritual" : "banana dance",
-	"behold" : "stare",
+	"behold" : "oogle",
 	"veil" : "disguise",
 	"vista" : "scene",
 	"always" : "usually",
@@ -430,6 +454,7 @@ atropa.wtf.dictionary = {
 	"taking care" : "forgeting",
 	"takes care" : "forgets",
 	"take care" : "forget",
+	"forget" : "disremember",
 	"caring" : "giving a shit",
 	"cared" : "gave a shit",
 	"care" : "give a shit",
@@ -438,18 +463,47 @@ atropa.wtf.dictionary = {
 	"sea" : "bath",
 	"bay" : "sink",
 	"twilight" : "moonshine",
-	"broken" : "busted",
+	"broken" : "beaten",
+	"broke" : "beat",
+	"break" : "beat",
 	"forever" : "so very",
 	"human race" : "gerbil empire",
-	"never ending nightmare" : "series of whiny tantrums"
+	"nightmare" : "tantrum",
+	"suffer" : "pirouette",
+	"myself" : "my muchness",
+	"me" : "i",
+	"my" : "i's ",
+	"mine" : "i's",
+	"was i" : "were i",
+	"am i" : "are i",
+	"im" : "i'm",
+	"i'm" : "i are",
+	"i've" : "i have",
+	"i'll" : "i will",
+	"i am" : "i are",
+	"yourself" : "you's muchness",
+	"yours" : "you's",
+	"your" : "you's",
+	"you all" : "all you",
+	"you'll" : "you will",
+	"you've" : "you has",
+	"you're" : "you is",
+	"thee" : "you",
+	"thine" : "you's",
+	"thou" : "you",
+	"we" : "they",
+	"us" : "them",
+	"our" : "their",
+	"ours" : "theirs",
+	"i" : "Kevin",
+	"you" : "Retards"
 };
-
 /**
  * Accepts plain text input and Gloriously WTFifies it.
  * @author <a href="mailto:matthewkastor@gmail.com">
  * Matthew Christopher Kastor-Inare III </a><br />
  * ☭ Hial Atropa!! ☭
- * @version 20120909
+ * @version 20130110
  * @param {String} target The text to WTFify.
  * @return {String} Returns Genuine WTFified text.
  */
@@ -469,8 +523,10 @@ atropa.wtf.wtfify = function (target, isHTML) {
 	ret = {};
 	wtfCount = 0;
 	target = target.trim();
+	target = target.replace(/[. ][. ]+/gi, '<span style="color : brown ;"> [shit taco] </span>');
+	target = target.replace(/\b[ivxcl]+\./gi, '<span style="color : brown ;"> [#!~ syntax error : unexpected shit taco ~!#] </span>');
 	if(true === isHTML) {
-		target = '<p> ' + target.replace(/(\r\n|\r|\n)/g,' <br/>') + ' </p>';
+		target = '<p> ' + target.replace(/(\r\n|\r|\n)/g,' <br/> ') + ' </p>';
 	}
 	wordCount = atropa.string.countWords(target);
 	/**
@@ -508,7 +564,6 @@ atropa.wtf.wtfify = function (target, isHTML) {
 	ret.txt = target;
 	return ret;
 };
-
 /**
  * WTFifies the textContent of the given element and replaces
  *  the element with a pre block containing the results of
@@ -533,7 +588,6 @@ atropa.wtf.htmlElement = function(elementReference) {
  * @namespace A few utilities for manipulating strings.
  */
 atropa.string = {};
-
 /**
  * Converts the first character of a given string to
  * uppercase.
@@ -550,7 +604,6 @@ atropa.string.ucFirst = function ucFirst(string) {
 	string = string.charAt(0).toUpperCase() + string.slice(1);
 	return string;
 };
-
 /**
  * Counts words.
  * @author <a href="mailto:matthewkastor@gmail.com">
@@ -571,7 +624,6 @@ atropa.string.countWords = function (someText) {
 };
 
 
-
 /**
  * Container for regex functions.
  * @author <a href="mailto:matthewkastor@gmail.com">
@@ -581,14 +633,13 @@ atropa.string.countWords = function (someText) {
  * @namespace Container for regex functions.
  */
 atropa.regex = {};
-
 /**
  * Appends common prefix, suffix, and word boundary regex strings to
  * the supplied word.
  * @author <a href="mailto:matthewkastor@gmail.com">
  * Matthew Christopher Kastor-Inare III </a><br />
  * ☭ Hial Atropa!! ☭
- * @version 20130101
+ * @version 20130110
  * @param {String} word The word to append prefix and suffix to
  * @param {Integer} threshold The word.length at which it does not
  * make sense to append prefix and suffix. Defaults to 3.
@@ -603,7 +654,7 @@ atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
 	var prefixes,
 	suffixes;
 	prefixes = '(pre|un|re)?';
-	suffixes = '(ification|tionally|ication|ified|istic|iness|fare|tion|ance|ence|less|ally|able|ness|ized|ised|ous|ify|ing|ity|ful|ant|ate|est|ism|izm|ist|ic|al|ed|er|et|ly|rs|y|s|r|d)?';
+	suffixes = '(ification|tionally|ication|ified|istic|iness|fare|tion|ance|ence|less|ally|able|ness|ized|ised|ous|ify|ing|ity|ful|ant|ate|est|ism|izm|ist|ic|al|ed|er|et|ly|rs|in|y|s|r|d)?';
 	
 	threshold = threshold === undefined ? 3 : threshold;
 	
