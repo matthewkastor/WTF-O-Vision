@@ -543,6 +543,8 @@ atropa.wtf.wtfify = function (target, isHTML) {
 	 */
 	replacementText = function (m, sub1, sub2) {
 		wtfCount++;
+		sub1 = atropa.setAsOptionalArg('', sub1);
+		sub2 = atropa.setAsOptionalArg('', sub2);
 		var out;
 		if(true === isHTML) {
 			out = '<span style="color : red ;">' + sub1 + atropa.wtf.dictionary[x] + sub2 + '</span>';
