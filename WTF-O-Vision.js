@@ -50,7 +50,6 @@ atropa.setAsOptionalArg = function (defaultVal, optionalArg) {
 	return optionalArg;
 };
 
-
 /**
  * Container for all Glorious WTFifier related functions and such.
  * @author <a href="mailto:matthewkastor@gmail.com">
