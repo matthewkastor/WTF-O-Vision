@@ -22,16 +22,66 @@ var atropa;
 atropa = {};
 
 
+/// <reference path="../../docs/vsdoc/OpenLayersAll.js"/>
+/*jslint indent: 4, maxerr: 50, white: true, browser: true, devel: true, plusplus: true, regexp: true */
+/*global atropa */
+/**
+ * Container for regex functions.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @version 20120909
+ * @namespace Container for regex functions.
+ */
+atropa.regex = {};
+/**
+ * Appends common prefix, suffix, and word boundary regex strings to
+ * the supplied word.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @version 20130110
+ * @param {String} word The word to append prefix and suffix to
+ * @param {Integer} threshold The word.length at which it does not
+ * make sense to append prefix and suffix. Defaults to 3.
+ * @returns {String} Returns the supplied word with prefix, suffix,
+ * and word boundaries attached. If the word.length was not greater
+ * than the threshold, only word boundaries are attached. The string
+ * represents a RegEx which should pick out most forms of regular
+ * words.
+ */
+atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
+	"use strict";
+	var prefixes,
+	suffixes;
+	prefixes = '(pre|un|re)?';
+	suffixes = '(ification|tionally|ication|ified|istic|iness|fare|tion|ance|ence|less|ally|able|ness|ized|ised|ous|ify|ing|ity|ful|ant|ate|est|ism|izm|ist|ic|al|ed|er|et|ly|rs|in|y|s|r|d)?';
+	
+	threshold = threshold === undefined ? 3 : threshold;
+	
+	if (word.length > threshold) {
+		word = '\\b' + prefixes + word + suffixes + '\\b';
+	} else {
+		word = '\\b()' + word + '()\\b';
+	}
+	return word;
+};
+
+
+/// <reference path="../../docs/vsdoc/OpenLayersAll.js"/>
+/*jslint indent: 4, maxerr: 50, white: true, browser: true, devel: true, plusplus: true, regexp: true */
+/*global atropa */
 /**
  * Set default values for optional function parameters.
+ * @example
  * <pre>
-// To set a default value for an optional parameter
-function(optionalArg) {
-var defaultVal = 'hello there!';
-optionalArg = atropa.setAsOptionalArg(defaultVal, optionalArg);
-return optionalArg;
-}
-</pre>
+ *   // To set a default value for an optional parameter
+ *   function(optionalArg) {
+ *       var defaultVal = 'hello there!';
+ *       optionalArg = atropa.setAsOptionalArg(defaultVal, optionalArg);
+ *       return optionalArg;
+ *   }
+ * </pre>
  * @author <a href="mailto:matthewkastor@gmail.com">
  * Matthew Christopher Kastor-Inare III </a><br />
  * ☭ Hial Atropa!! ☭
@@ -50,6 +100,161 @@ atropa.setAsOptionalArg = function (defaultVal, optionalArg) {
 	return optionalArg;
 };
 
+
+/// <reference path="../../docs/vsdoc/OpenLayersAll.js"/>
+/*jslint indent: 4, maxerr: 50, white: true, browser: true, devel: true, plusplus: true, regexp: true */
+/*global atropa */
+/**
+ * A few utilities for manipulating strings.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @namespace A few utilities for manipulating strings.
+ */
+atropa.string = {};
+/**
+ * Converts the first character of a given string to
+ * uppercase.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @version 20120909
+ * @param {String} string The string for which you want the
+ * first letter to be in upper case.
+ * @returns {String} The given string with it's first letter capitalized.
+ */
+atropa.string.ucFirst = function ucFirst(string) {
+	"use strict";
+	string = string.charAt(0).toUpperCase() + string.slice(1);
+	return string;
+};
+/**
+ * Counts words.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @version 20120909
+ * @param {String} someText Plain text.
+ * @return {Number} Returns the count of words in someText.
+ */
+atropa.string.countWords = function (someText) {
+	"use strict";
+	var wordCount,
+	re;
+	wordCount = 0;
+	re = /\s+/gi;
+	wordCount = someText.split(re);
+	return wordCount.length;
+};
+
+/**
+ * Converts end of line markers into whatever you want. 
+ * Automatically detects any of \r\n, \n, or \r and 
+ * replaces it with the user specified EOL marker.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @param {String} text The text you want processed.
+ * @param {String} newEOL The replacement for the current EOL marks.
+ * @returns {String} Returns the processed text.
+ */
+atropa.string.convertEol = function convertEOL(text, newEOL) {
+	'use strict';
+    return text.replace(/(\r\n|\n|\r)/g, newEOL);
+};
+
+/**
+ * Removes a quantity of leading spaces specified by offset.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @param {String} text The text to process.
+ * @param {Number} offset The amount of spaces you want removed 
+ * from the beginning of the text.
+ * @returns Returns the processed text.
+ */
+atropa.string.offsetWhiteSpace = function offsetWhiteSpace(text, offset) {
+	'use strict';
+    var regx;
+    regx = new RegExp('^ {' + offset + '}');
+    text = text.replace(regx, '');
+    return text;
+};
+
+/**
+ * Converts all tabs in leading whitespace into four spaces.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @param {String} text The text to process
+ * @returns {String} Returns the processed text.
+ */
+atropa.string.normalizeWhiteSpacePrefix = function normalizeWhiteSpacePrefix(text) {
+	'use strict';
+    var prefix = text.match(/^\s*/);
+    if(prefix) {
+        prefix = prefix[0];
+        prefix = prefix.replace(/\t/g, '    ');
+        text = text.replace(/^\s*/, prefix);
+    }
+    return text;
+};
+
+/**
+ * Converts all tabs into four spaces.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @param {String} text The text to process
+ * @returns {String} Returns the processed text.
+ */
+atropa.string.normalizeWhiteSpace = function normalizeWhiteSpace(text) {
+	'use strict';
+    text = text.replace(/\t/g, '    ');
+    return text;
+};
+
+/**
+ * Counts the number of leading space or tab characters but not both.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @param {String} text The text to analyze.
+ * @returns {Number} Returns the quantity of leading spaces or tabs.
+ */
+atropa.string.getOffset = function getOffset(text) {
+	'use strict';
+    var offset = 0,
+        leadingChar = text.charAt(0);
+        
+    if( leadingChar === ' ' || leadingChar === '\t') {
+        while(text.charAt(offset) === leadingChar && offset < text.length) {
+            offset++;
+        }
+    }
+    return offset;
+};
+/**
+ * Breaks a string into an array of words.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ * Matthew Christopher Kastor-Inare III </a><br />
+ * ☭ Hial Atropa!! ☭
+ * @version 20130118
+ * @param {String} text The text to analyze.
+ * @returns {Array} Returns an array of the words in
+ *  the given text.
+ */
+atropa.string.getWords = function (text) {
+	"use strict";
+	return atropa.arrays.removeEmptyElements(
+		text.split(/[^A-Za-z\-']+/gi).sort()
+	);
+};
+
+
+/// <reference path="../../docs/vsdoc/OpenLayersAll.js"/>
+/*jslint indent: 4, maxerr: 50, white: true, browser: true, devel: true, plusplus: true, regexp: true */
+/*global atropa */
 /**
  * Container for all Glorious WTFifier related functions and such.
  * @author <a href="mailto:matthewkastor@gmail.com">
@@ -562,7 +767,7 @@ atropa.wtf.wtfify = function (target, isHTML) {
 	 * @author <a href="mailto:matthewkastor@gmail.com">
 	 * Matthew Christopher Kastor-Inare III </a><br />
 	 * ☭ Hial Atropa!! ☭
-	 * @version 20120909
+	 * @version 20130112
 	 * @methodOf atropa.wtf.wtfify-
 	 * @private
 	 * @param {String} m First matched pattern in string searched.
@@ -595,105 +800,18 @@ atropa.wtf.wtfify = function (target, isHTML) {
 	return ret;
 };
 /**
- * WTFifies the textContent of the given element and replaces
- *  the element with a pre block containing the results of
- *  WTFification.
+ * WTFifies the <code>textContent</code> or <code>value</code> of the
+ *  given element and replaces the element with a pre block
+ *  containing the results of WTFification.
  * @param {HTMLElement} elementReference A reference to an HTML Element.
- * @version 20121229
- * @todo Determine wheter the element stores text values in a textContent or value property ie. form field or other.
+ * @version 20130112
  */
 atropa.wtf.htmlElement = function(elementReference) {
 	"use strict";
-	var wtfified = atropa.wtf.wtfify(elementReference.textContent, true);
+	var wtfified, txt;
+	txt = elementReference.value || elementReference.textContent;
+	wtfified = atropa.wtf.wtfify(txt, true);
 	elementReference.innerHTML = '<div style="color:black; background:white; white-space:pre-wrap;">' + wtfified.txt + '</div>';
-};
-
-
-/**
- * A few utilities for manipulating strings.
- * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
- * @version 20120909
- * @namespace A few utilities for manipulating strings.
- */
-atropa.string = {};
-/**
- * Converts the first character of a given string to
- * uppercase.
- * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
- * @version 20120909
- * @param {String} string The string for which you want the
- * first letter to be in upper case.
- * @returns {String} The given string with it's first letter capitalized.
- */
-atropa.string.ucFirst = function ucFirst(string) {
-	"use strict";
-	string = string.charAt(0).toUpperCase() + string.slice(1);
-	return string;
-};
-/**
- * Counts words.
- * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
- * @version 20120909
- * @param {String} someText Plain text.
- * @return {Number} Returns the count of words in someText.
- */
-atropa.string.countWords = function (someText) {
-	"use strict";
-	var wordCount,
-	re;
-	wordCount = 0;
-	re = /\s+/gi;
-	wordCount = someText.split(re);
-	return wordCount.length;
-};
-
-
-/**
- * Container for regex functions.
- * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
- * @version 20120909
- * @namespace Container for regex functions.
- */
-atropa.regex = {};
-/**
- * Appends common prefix, suffix, and word boundary regex strings to
- * the supplied word.
- * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
- * @version 20130110
- * @param {String} word The word to append prefix and suffix to
- * @param {Integer} threshold The word.length at which it does not
- * make sense to append prefix and suffix. Defaults to 3.
- * @returns {String} Returns the supplied word with prefix, suffix,
- * and word boundaries attached. If the word.length was not greater
- * than the threshold, only word boundaries are attached. The string
- * represents a RegEx which should pick out most forms of regular
- * words.
- */
-atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
-	"use strict";
-	var prefixes,
-	suffixes;
-	prefixes = '(pre|un|re)?';
-	suffixes = '(ification|tionally|ication|ified|istic|iness|fare|tion|ance|ence|less|ally|able|ness|ized|ised|ous|ify|ing|ity|ful|ant|ate|est|ism|izm|ist|ic|al|ed|er|et|ly|rs|in|y|s|r|d)?';
-	
-	threshold = threshold === undefined ? 3 : threshold;
-	
-	if (word.length > threshold) {
-		word = '\\b' + prefixes + word + suffixes + '\\b';
-	} else {
-		word = '\\b()' + word + '()\\b';
-	}
-	return word;
 };
 
 

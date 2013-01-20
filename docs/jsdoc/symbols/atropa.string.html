@@ -213,15 +213,13 @@ ul.inheritsList
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
-				<br />Version
-					20120909.<br />
 				
 				
 			
 				A few utilities for manipulating strings.
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/C__Users_kastor_Documents_scripts_js_WTF-O-Vision_current_src_WTF-O-Vision.js.html">WTF-O-Vision.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_WTF-O-Vision.js.html">WTF-O-Vision.js</a>.
 				
 			</p>
 
@@ -269,9 +267,63 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">atropa.string.<b><a href="../symbols/atropa.string.html#.convertEol">convertEol</a></b>(text, newEOL)
+								</div>
+								<div class="description">Converts end of line markers into whatever you want.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">atropa.string.<b><a href="../symbols/atropa.string.html#.countWords">countWords</a></b>(someText)
 								</div>
 								<div class="description">Counts words.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">atropa.string.<b><a href="../symbols/atropa.string.html#.getOffset">getOffset</a></b>(text)
+								</div>
+								<div class="description">Counts the number of leading space or tab characters but not both.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">atropa.string.<b><a href="../symbols/atropa.string.html#.getWords">getWords</a></b>(text)
+								</div>
+								<div class="description">Breaks a string into an array of words.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">atropa.string.<b><a href="../symbols/atropa.string.html#.normalizeWhiteSpace">normalizeWhiteSpace</a></b>(text)
+								</div>
+								<div class="description">Converts all tabs into four spaces.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">atropa.string.<b><a href="../symbols/atropa.string.html#.normalizeWhiteSpacePrefix">normalizeWhiteSpacePrefix</a></b>(text)
+								</div>
+								<div class="description">Converts all tabs in leading whitespace into four spaces.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">atropa.string.<b><a href="../symbols/atropa.string.html#.offsetWhiteSpace">offsetWhiteSpace</a></b>(text, offset)
+								</div>
+								<div class="description">Removes a quantity of leading spaces specified by offset.</div>
 							</td>
 						</tr>
 					
@@ -332,6 +384,55 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
+					<a name=".convertEol"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">atropa.string.</span><b>convertEol</b>(text, newEOL)
+					
+					</div>
+					<div class="description">
+						Converts end of line markers into whatever you want. Automatically detects any of \r\n, \n, or \r and replaces it with the user specified EOL marker.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com">Matthew Christopher Kastor-Inare III </a><br />☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>text</b>
+									
+								</dt>
+								<dd>The text you want processed.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>newEOL</b>
+									
+								</dt>
+								<dd>The replacement for the current EOL marks.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> Returns the processed text.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name=".countWords"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -367,6 +468,227 @@ ul.inheritsList
 							<dt class="heading">Returns:</dt>
 							
 								<dd><span class="light fixedFont">{Number}</span> Returns the count of words in someText.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getOffset"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Number}</span>
+					<span class="light">atropa.string.</span><b>getOffset</b>(text)
+					
+					</div>
+					<div class="description">
+						Counts the number of leading space or tab characters but not both.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com">Matthew Christopher Kastor-Inare III </a><br />☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>text</b>
+									
+								</dt>
+								<dd>The text to analyze.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> Returns the quantity of leading spaces or tabs.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getWords"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Array}</span>
+					<span class="light">atropa.string.</span><b>getWords</b>(text)
+					
+					</div>
+					<div class="description">
+						Breaks a string into an array of words.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com">Matthew Christopher Kastor-Inare III </a><br />☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>text</b>
+									
+								</dt>
+								<dd>The text to analyze.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Array}</span> Returns an array of the words in the given text.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".normalizeWhiteSpace"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">atropa.string.</span><b>normalizeWhiteSpace</b>(text)
+					
+					</div>
+					<div class="description">
+						Converts all tabs into four spaces.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com">Matthew Christopher Kastor-Inare III </a><br />☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>text</b>
+									
+								</dt>
+								<dd>The text to process</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> Returns the processed text.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".normalizeWhiteSpacePrefix"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">atropa.string.</span><b>normalizeWhiteSpacePrefix</b>(text)
+					
+					</div>
+					<div class="description">
+						Converts all tabs in leading whitespace into four spaces.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com">Matthew Christopher Kastor-Inare III </a><br />☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>text</b>
+									
+								</dt>
+								<dd>The text to process</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> Returns the processed text.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".offsetWhiteSpace"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">atropa.string.</span><b>offsetWhiteSpace</b>(text, offset)
+					
+					</div>
+					<div class="description">
+						Removes a quantity of leading spaces specified by offset.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com">Matthew Christopher Kastor-Inare III </a><br />☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>text</b>
+									
+								</dt>
+								<dd>The text to process.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>offset</b>
+									
+								</dt>
+								<dd>The amount of spaces you want removed from the beginning of the text.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>Returns the processed text.</dd>
 							
 							</dl>
 						
@@ -430,7 +752,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 10 2013 15:16:23 GMT-0500 (EST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Jan 20 2013 05:27:23 GMT-0500 (EST)
 		</div>
 	</body>
 </html>

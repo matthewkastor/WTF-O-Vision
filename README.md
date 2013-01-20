@@ -4,4 +4,4 @@ This is the branch containing the online documentation for the WTF-O-Vision avai
 
 Copy this branch and you will have a copy of the WTF-O-Vision and all its documentation.
 
-If you would rather disregard the docs you should copy the main branch instead. https://github.com/matthewkastor/WTF-O-Vision/tree/master
+Disregard the main branch, it will not be updated.
