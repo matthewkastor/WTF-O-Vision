@@ -14,8 +14,8 @@
 /**
  * Container for all Glorious classes, functions, etc.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @namespace Container for all Glorious classes, functions, etc.
  */
 var atropa;
@@ -28,8 +28,8 @@ atropa = {};
 /**
  * Container for regex functions.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20120909
  * @namespace Container for regex functions.
  */
@@ -38,8 +38,8 @@ atropa.regex = {};
  * Appends common prefix, suffix, and word boundary regex strings to
  * the supplied word.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20130110
  * @param {String} word The word to append prefix and suffix to
  * @param {Integer} threshold The word.length at which it does not
@@ -83,8 +83,8 @@ atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
  *   }
  * </pre>
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20120909
  * @param {Mixed} defaultVal The default value to set.
  * @param {Mixed} optionalArg A reference to the optional argument.
@@ -107,8 +107,8 @@ atropa.setAsOptionalArg = function (defaultVal, optionalArg) {
 /**
  * A few utilities for manipulating strings.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @namespace A few utilities for manipulating strings.
  */
 atropa.string = {};
@@ -116,8 +116,8 @@ atropa.string = {};
  * Converts the first character of a given string to
  * uppercase.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20120909
  * @param {String} string The string for which you want the
  * first letter to be in upper case.
@@ -131,8 +131,8 @@ atropa.string.ucFirst = function ucFirst(string) {
 /**
  * Counts words.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20120909
  * @param {String} someText Plain text.
  * @return {Number} Returns the count of words in someText.
@@ -152,8 +152,8 @@ atropa.string.countWords = function (someText) {
  * Automatically detects any of \r\n, \n, or \r and 
  * replaces it with the user specified EOL marker.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @param {String} text The text you want processed.
  * @param {String} newEOL The replacement for the current EOL marks.
  * @returns {String} Returns the processed text.
@@ -166,8 +166,8 @@ atropa.string.convertEol = function convertEOL(text, newEOL) {
 /**
  * Removes a quantity of leading spaces specified by offset.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @param {String} text The text to process.
  * @param {Number} offset The amount of spaces you want removed 
  * from the beginning of the text.
@@ -184,8 +184,8 @@ atropa.string.offsetWhiteSpace = function offsetWhiteSpace(text, offset) {
 /**
  * Converts all tabs in leading whitespace into four spaces.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @param {String} text The text to process
  * @returns {String} Returns the processed text.
  */
@@ -203,8 +203,8 @@ atropa.string.normalizeWhiteSpacePrefix = function normalizeWhiteSpacePrefix(tex
 /**
  * Converts all tabs into four spaces.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @param {String} text The text to process
  * @returns {String} Returns the processed text.
  */
@@ -217,8 +217,8 @@ atropa.string.normalizeWhiteSpace = function normalizeWhiteSpace(text) {
 /**
  * Counts the number of leading space or tab characters but not both.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @param {String} text The text to analyze.
  * @returns {Number} Returns the quantity of leading spaces or tabs.
  */
@@ -237,8 +237,8 @@ atropa.string.getOffset = function getOffset(text) {
 /**
  * Breaks a string into an array of words.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20130118
  * @param {String} text The text to analyze.
  * @returns {Array} Returns an array of the words in
@@ -246,9 +246,17 @@ atropa.string.getOffset = function getOffset(text) {
  */
 atropa.string.getWords = function (text) {
 	"use strict";
-	return atropa.arrays.removeEmptyElements(
-		text.split(/[^A-Za-z\-']+/gi).sort()
+	var out = [];
+	function invalidChars(element) {
+		var matched = /^[\-'’`]+$/.test(element);
+		// invert the result of test. throw out elements that match.
+		return !matched;
+	}
+	out = atropa.arrays.removeEmptyElements(
+		text.split(/[^A-Za-z\-'’`]+/gi)
 	);
+	out = out.filter(invalidChars);
+	return out;
 };
 
 
@@ -258,8 +266,8 @@ atropa.string.getWords = function (text) {
 /**
  * Container for all Glorious WTFifier related functions and such.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20120909
  * @namespace Container for all Glorious WTFifier related functions and such.
  */
@@ -268,8 +276,8 @@ atropa.wtf = {};
  * The Glorious WTFification Dictionary: Turning Shit
  * Into Polished Turds.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20130110
  */
 atropa.wtf.dictionary = {
@@ -734,8 +742,8 @@ atropa.wtf.dictionary = {
 /**
  * Accepts plain text input and Gloriously WTFifies it.
  * @author <a href="mailto:matthewkastor@gmail.com">
- * Matthew Christopher Kastor-Inare III </a><br />
- * ☭ Hial Atropa!! ☭
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
  * @version 20130110
  * @param {String} target The text to WTFify.
  * @return {String} Returns Genuine WTFified text.
@@ -765,8 +773,8 @@ atropa.wtf.wtfify = function (target, isHTML) {
 	/**
 	 * Accepts plain text input and Gloriously WTFifies it.
 	 * @author <a href="mailto:matthewkastor@gmail.com">
-	 * Matthew Christopher Kastor-Inare III </a><br />
-	 * ☭ Hial Atropa!! ☭
+	 *  Matthew Christopher Kastor-Inare III </a><br />
+	 *  ☭ Hial Atropa!! ☭
 	 * @version 20130112
 	 * @methodOf atropa.wtf.wtfify-
 	 * @private
