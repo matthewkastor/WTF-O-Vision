@@ -1,60 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html style="direction: ltr;"
       lang="en-us">
     <head>
         <meta content="text/html; charset=utf-8"
               http-equiv="Content-Type">
+		<meta name="Description"
+			  content="The Glorious WTF-O-Vision WTFifies, Gloriously.">
+		<meta name="keywords"
+			  content="WTFify, WTF-O-Vision, atropa, WTF-O-Meter, Kastor, Matthew Kastor">
         <title>
             WTF-O-Vision
         </title>
         <style type="text/css">
-.halfWidth {
-            width: 50%;
-        }
-        .txtArea {
-            height: 250px;
-        }
-        .content {
-            border : 2px black solid;
-        }
+			.halfWidth {
+				width: 49%;
+			}
+			.btn {
+				height: 30px;
+			}
+			.content {
+				height: 250px;
+				overflow: auto;
+				border : 2px black solid;
+			}
+			.quote {
+				margin: 25px;
+				padding: 10px;
+				border: 2px blue dashed;
+			}
         </style>
         <script src="./src/WTF-O-Vision.js"
               type="text/javascript">
 </script>
     </head>
     <body style="direction: ltr;">
-        <h1>
-            The Glorious WTF-O-Vision!
-        </h1>
+		<h1>
+			The Glorious WTF-O-Vision!
+		</h1>
 
-        <p>
-            This code rummages through text and replaces certain words and phrases with other words and phrases. It's like a reverse Mad-libs. Get it at <a href="https://github.com/matthewkastor/WTF-O-Vision">https://github.com/matthewkastor/WTF-O-Vision</a>.
-        </p>
+		<p>
+			<b></b>The Glorious WTF-O-Vision WTFifies, Gloriously.<br>
+			Get it at <a href="https://github.com/matthewkastor/WTF-O-Vision">https://github.com/matthewkastor/WTF-O-Vision</a>.</b>
+		</p>
 
-        <p>
-            Tested on Firefox 17. Your mileage may vary.
-        </p>
+		<h2>
+			What It Does
+		</h2>
 
-        <p>
-            You can use the <code>js</code> file as is, it's ready to go. Edit the dictionary and turn it into a profanity filter, reverse profanity filter, trite checker, or whatever you want. Full documentation is available in the source code or in somewhat organized HTML <a href="./docs/jsdoc/index.html">here</a>. There is also a <a href="./report/index.html">code analysis report</a> if you are into that kind of thing.
-        </p>
+		<div class="quote halfWidth">
+			<p>From the <a href="http://www.urbandictionary.com/define.php?term=WTFify&defid=6895739">Urban Dictionary</a></p>
+			<blockquote cite="http://www.urbandictionary.com/define.php?term=WTFify&defid=6895739">
+				<p></p><b>WTFify</b><br>
+				Pronounced: "What-the-fuckify"<br>
+				Root: WTF<br>
+				verb<br>
+				To edit a piece of writing as if it were a Mad Libs word game. Replacing nouns, verbs, and phrases with other asinine and often more interesting bits of text.</p>
+			</blockquote>
+		</div>
 
-        <p>
-            <span style="font-weight: bold;">Try it live!</span>
-        </p>
+		<h2>
+			Try it live!
+		</h2>
 
-        <div class="content">
-            I am the greatest poet to ever live.
-        </div>
+		<p>
+			The div below is editable in any browser worth it's salt. Go ahead and paste in whatever you want then click the <code>WTFify!</code> button for Glorious results!
+		</p>
 
-        <form>
-            <p>
-                <button class="halfWidth"
-                   id="submit"
-                   name="submit"
-                   type="button"
-                   onclick="atropa.wtf.htmlElement(document.getElementsByClassName('content')[0]);">WTFify!</button>
-            </p>
-        </form>
+		<p class="halfWidth">
+			<button class="halfWidth btn"
+				id="submit"
+				name="submit"
+				type="button"
+				onclick="document.getElementsByClassName('content')[0].innerHTML = '';">Clear</button>
+				
+			<button class="halfWidth btn"
+				id="submit"
+				name="submit"
+				type="button"
+				onclick="atropa.wtf.htmlElement(document.getElementsByClassName('content')[0]);">WTFify!</button>
+		</p>
+
+		<div contenteditable="true" class="content halfWidth">
+			I am the greatest poet to ever live.
+		</div>
+
+		<h2>
+			Usage & Info
+		</h2>
+
+		<p>
+			Tested on Firefox 17 - 18.0.1. Your mileage may vary.
+		</p>
+
+		<p>
+			You can use the <code>js</code> file as is, it's ready to go. Edit the dictionary and turn it into a profanity filter, reverse profanity filter, trite checker, or whatever you want. Full documentation is available in the source code or in somewhat organized HTML <a href="./docs/jsdoc/index.html">here</a>. There is also a <a href="./report/index.html">code analysis report</a> if you are into that kind of thing.
+		</p>
     </body>
 </html>

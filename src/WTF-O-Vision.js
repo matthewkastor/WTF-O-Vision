@@ -258,6 +258,29 @@ atropa.string.getWords = function (text) {
 	out = out.filter(invalidChars);
 	return out;
 };
+/**
+ * Escapes <code>CDATA</code> sections in text
+ *  so that the text may be embedded into a 
+ *  <code>CDATA</code> section. This should be run
+ *  on any text which may contain the string 
+ *  <code>]]></code> since said string will effectively
+ *  end the <code>CDATA</code> section prematurely.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @version 20130118
+ * @param {String} text The text containing 
+ *  <code>CDATA</code> sections to escape.
+ * @returns {Array} Returns a string with escaped
+ *  <code>CDATA</code> sections.
+ * @see <a href="http://en.wikipedia.org/wiki/CDATA#Nesting">
+ *  http://en.wikipedia.org/wiki/CDATA#Nesting</a>
+ * @see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=98168">
+ *  https://bugzilla.mozilla.org/show_bug.cgi?id=98168</a>
+ */
+atropa.string.escapeCdata = function escapeCdata(text) {
+	return String(text).replace(/]]>/g, ']]]]><![CDATA[>');
+};
 
 
 /// <reference path="../../docs/vsdoc/OpenLayersAll.js"/>
@@ -764,7 +787,7 @@ atropa.wtf.wtfify = function (target, isHTML) {
 	ret = {};
 	wtfCount = 0;
 	target = target.trim();
-	target = target.replace(/[. ][. ]+/gi, '<span style="color : brown ;"> [shit taco] </span>');
+	target = target.replace(/(\. ?){2,}/gi, '<span style="color : brown ;"> [shit taco] </span>');
 	target = target.replace(/\b[ivxcl]+\./gi, '<span style="color : brown ;"> [#!~ syntax error : unexpected shit taco ~!#] </span>');
 	if(true === isHTML) {
 		target = '<p> ' + target.replace(/(\r\n|\r|\n)/g,' <br/> ') + ' </p>';
@@ -814,12 +837,13 @@ atropa.wtf.wtfify = function (target, isHTML) {
  * @param {HTMLElement} elementReference A reference to an HTML Element.
  * @version 20130112
  */
-atropa.wtf.htmlElement = function(elementReference) {
+atropa.wtf.htmlElement = function (elementReference) {
 	"use strict";
 	var wtfified, txt;
+	elementReference.innerHTML = elementReference.innerHTML.replace(/<br>(\s+)?\r?\n?/g, '\r\n');
 	txt = elementReference.value || elementReference.textContent;
 	wtfified = atropa.wtf.wtfify(txt, true);
-	elementReference.innerHTML = '<div style="color:black; background:white; white-space:pre-wrap;">' + wtfified.txt + '</div>';
+	elementReference.innerHTML = '<pre style="color:black; background:white; white-space:pre-wrap;">' + wtfified.txt + '</pre>';
 };
 
 
