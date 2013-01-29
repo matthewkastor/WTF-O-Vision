@@ -29,8 +29,38 @@
 				border: 2px blue dashed;
 			}
         </style>
-        <script src="./src/WTF-O-Vision.js"
-              type="text/javascript">
+		<script type="text/javascript">
+			/**
+			 * This demo page is used in two projects: the AtropaToolbox
+			 *  and the WTF-O-Vision. The WTF-O-Vision is just one of the
+			 *  many tools in the AtropaToolbox and so I have provided a
+			 *  separate repository for this single tool. To load the
+			 *  WTF-O-Vision in your own pages you do not need the following
+			 *  code, all you need is a script tag whose source attribute
+			 *  points to WTF-O-Vision.js. For example, if you crated an
+			 *  HTML page where you want to use the WTF-O-Vision and you have
+			 *  put both the HTML page and WTF-O-Vision.js in the same folder,
+			 *  then all you need is a script tag like
+			 *  <script type="text/javascript" src="WTF-O-Vision.js">
+			 *  The following code block is simply detecting which project
+			 *  this page is being accessed from and creating a script tag to
+			 *  load either the AtropaToolbox or the standalone WTF-O-Vision.
+			 */
+  			(function () {
+  				function loadScript(url) {
+  					var head = document.getElementsByTagName('head')[0];
+  					var script = document.createElement('script');
+  					script.setAttribute('type', 'text/javascript');
+  					script.setAttribute('src', url);
+  					head.appendChild(script);
+  				}
+  				if (/^\/WTF-O-Vision/gi.test(document.location.pathname)) {
+  					loadScript('./src/WTF-O-Vision.js');
+  				} else if (/^\/Atropa/gi.test(document.location.pathname)) {
+					loadScript('./src/AtropaToolbox.js');
+  				}
+  			} ());
+		</script>
 </script>
     </head>
     <body style="direction: ltr;">
@@ -97,7 +127,13 @@
 		</p>
 
 		<p>
-			You can use the <code>js</code> file as is, it's ready to go. Edit the dictionary and turn it into a profanity filter, reverse profanity filter, trite checker, or whatever you want. Full documentation is available in the source code or in somewhat organized HTML <a href="./docs/jsdoc/index.html">here</a>. There is also a <a href="./report/index.html">code analysis report</a> if you are into that kind of thing.
+			You can use the <code>js</code> file as is, it's ready to go. Edit the dictionary and turn it into a profanity filter, reverse profanity filter, trite checker, or whatever you want. Full documentation is available in the source code or in somewhat organized HTML <a href="./docs/jsdoc/symbols/atropa.wtf.html">here</a>. There is also a <a href="./report/index.html">code analysis report</a> if you are into that kind of thing.
 		</p>
+
+		<p>
+			Using Visual Studio or WebMatrix? Intellisense support is available from <a target="_blank"
+               href="./docs/vsdoc/OpenLayersAll.js">docs/vsdoc/OpenLayersAll.js</a>. Other editors and IDE's may be able to use the javadoc style comments in the source code.
+		</p>
+
     </body>
 </html>
