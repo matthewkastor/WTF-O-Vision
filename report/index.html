@@ -12,6 +12,10 @@
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
+  <script>
+    var __options = {"title":"Code Analysis of The Glorious WTF-O-Vision","flags":{"complexity":{"logicalor":true,"switchcase":true,"forin":false,"trycatch":false,"newmi":true},"jshint":{"options":{},"globals":{}}}}
+  </script>
+
   <link href="assets/css/vendor/bootstrap-3.0.0-wip.css" rel="stylesheet">
   <link href="assets/css/vendor/font-awesome.css" rel="stylesheet">
   <link href="assets/css/vendor/font-awesome-ie7.css" rel="stylesheet">
@@ -45,12 +49,12 @@
   </div>
   <div class="row">
     <div class="span6">
-      <h2 class="header">Total SLOC</h2>
+      <h2 class="header">Total SLOC <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code" data-original-title="SLOC"></i></h2>
       <p class="stat">764</p>
     </div>
     <div class="span6">
-      <h2 class="header">Average Maintainability</h2>
-      <p class="stat">129.43</p>
+      <h2 class="header">Average Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
+      <p class="stat">75.69</p>
     </div>
   </div>
 </div>
@@ -58,20 +62,24 @@
 
 <div class="container">
   <div class="row">
-    <h2 class="span12">Maintainability</h2>
+    <h2 class="span12">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
     <div class="span12"><div id='chart_maintainability' class='chart'></div></div>
   </div>
   <div class="row">
-    <h2 class="span12">Lines of code</h2>
+    <h2 class="span12">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code" data-original-title="SLOC"></i></h2>
     <div class="span12"><div id='chart_sloc' class='chart'></div></div>
   </div>
   <div class="row">
-    <h2 class="span12">Estimated number of bugs</h2>
+    <h2 class="span12">Estimated number of bugs <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
     <div class="span12"><div id='chart_bugs' class='chart'></div></div>
   </div>
+  
+  <div class="row">
+    <h2 class="span12">Lint errors</h2>
+    <div class="span12"><div id='chart_lint' class='chart'></div></div>
+  </div>
+  
 </div>
-
-
 
 <div class="container">
   <div class="row">
@@ -82,31 +90,31 @@
       
       <li class="span12" id="plato-file-0">
         <span class="fade-left plato-file-fade visible-desktop"></span>
-        <span class="span4 plato-file"><a class="plato-file-link" href="./files/_atropaHeader_js/index.html">\atropaHeader.js</a></span>
+        <span class="span4 plato-file"><a class="plato-file-link" href="./files/upstream_atropaHeader_js/index.html">upstream\atropaHeader.js</a></span>
         <span class="span8 plato-file-chart"></span>
       </li>
       
       <li class="span12" id="plato-file-1">
         <span class="fade-left plato-file-fade visible-desktop"></span>
-        <span class="span4 plato-file"><a class="plato-file-link" href="./files/_regex_js/index.html">\regex.js</a></span>
+        <span class="span4 plato-file"><a class="plato-file-link" href="./files/upstream_regex_js/index.html">upstream\regex.js</a></span>
         <span class="span8 plato-file-chart"></span>
       </li>
       
       <li class="span12" id="plato-file-2">
         <span class="fade-left plato-file-fade visible-desktop"></span>
-        <span class="span4 plato-file"><a class="plato-file-link" href="./files/_setAsOptionalArg_js/index.html">\setAsOptionalArg.js</a></span>
+        <span class="span4 plato-file"><a class="plato-file-link" href="./files/upstream_setAsOptionalArg_js/index.html">upstream\setAsOptionalArg.js</a></span>
         <span class="span8 plato-file-chart"></span>
       </li>
       
       <li class="span12" id="plato-file-3">
         <span class="fade-left plato-file-fade visible-desktop"></span>
-        <span class="span4 plato-file"><a class="plato-file-link" href="./files/_string_js/index.html">\string.js</a></span>
+        <span class="span4 plato-file"><a class="plato-file-link" href="./files/upstream_string_js/index.html">upstream\string.js</a></span>
         <span class="span8 plato-file-chart"></span>
       </li>
       
       <li class="span12" id="plato-file-4">
         <span class="fade-left plato-file-fade visible-desktop"></span>
-        <span class="span4 plato-file"><a class="plato-file-link" href="./files/_wtf_js/index.html">\wtf.js</a></span>
+        <span class="span4 plato-file"><a class="plato-file-link" href="./files/upstream_wtf_js/index.html">upstream\wtf.js</a></span>
         <span class="span8 plato-file-chart"></span>
       </li>
       
@@ -130,6 +138,9 @@
 <script type="text/javascript" src="assets/scripts/bundles/core-bundle.js"></script>
 <script type="text/javascript" src="report.js"></script>
 <script type="text/javascript" src="assets/scripts/plato-overview.js"></script>
+<script>
+  $('[rel=popover]').popover();
+</script>
 
 </body>
 </html>

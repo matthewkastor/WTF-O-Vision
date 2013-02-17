@@ -37,7 +37,7 @@
 
 <div class="jumbotron">
   <div class="container">
-    <h1>enabled\z scratchpad.js</h1>
+    <h1>upstream\regex.js</h1>
   </div>
 </div>
 
@@ -45,21 +45,21 @@
   <div class="row">
     <div class="span6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
-      <p class="stat">100.00</p>
+      <p class="stat">61.66</p>
     </div>
     <div class="span6">
       <h2 class="header">Estimated # Bugs  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
-      <p class="stat">0.00</p>
+      <p class="stat">0.10</p>
     </div>
   </div>
   <div class="row">
     <div class="span6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty"></i></a></h2>
-      <p class="stat">0.00</p>
+      <p class="stat">12.35</p>
     </div>
     <div class="span6">
       <h2 class="header">SLOC/LSLOC <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
-      <p class="stat">1 / 0</p>
+      <p class="stat">33 / 13</p>
     </div>
   </div>
 </div>
@@ -82,7 +82,50 @@
 
 <div class="container">
   <div class="row">
-    <textarea id="file-source" class="span12">// atropa.wtf.htmlElement(document.getElementsByClassName('content')[0]);</textarea>
+    <textarea id="file-source" class="span12">/// <reference path="../../docs/vsdoc/OpenLayersAll.js"/>
+/*jslint indent: 4, maxerr: 50, white: true, browser: true, devel: true, plusplus: true, regexp: true */
+/*global atropa */
+/**
+ * Container for regex functions.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @version 20120909
+ * @namespace Container for regex functions.
+ */
+atropa.regex = {};
+/**
+ * Appends common prefix, suffix, and word boundary regex strings to
+ * the supplied word.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @version 20130110
+ * @param {String} word The word to append prefix and suffix to
+ * @param {Integer} threshold The word.length at which it does not
+ * make sense to append prefix and suffix. Defaults to 3.
+ * @returns {String} Returns the supplied word with prefix, suffix,
+ * and word boundaries attached. If the word.length was not greater
+ * than the threshold, only word boundaries are attached. The string
+ * represents a RegEx which should pick out most forms of regular
+ * words.
+ */
+atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
+	"use strict";
+	var prefixes,
+	suffixes;
+	prefixes = '(pre|un|re)?';
+	suffixes = '(ification|tionally|ication|ified|istic|iness|fare|tion|ance|ence|less|ally|able|ness|ized|ised|ous|ify|ing|ity|ful|ant|ate|est|ism|izm|ist|ic|al|ed|er|et|ly|rs|in|y|s|r|d)?';
+	
+	threshold = threshold === undefined ? 3 : threshold;
+	
+	if (word.length > threshold) {
+		word = '\\b' + prefixes + word + suffixes + '\\b';
+	} else {
+		word = '\\b()' + word + '()\\b';
+	}
+	return word;
+};</textarea>
   </div>
 </div>
 
