@@ -2,7 +2,7 @@ buildTools/
 headers/
 logs/
 node_modules/
-*build.bat
+build.bat
 jake
 jake.bat
 jakefile
