@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - atropa.wtf</title>
+		<title>JsDoc Reference - atropa.inquire</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -214,7 +214,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Namespace atropa.wtf
+				Namespace atropa.inquire
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -224,7 +224,7 @@ ul.inheritsList
 				
 				
 			
-				Container for all Glorious WTFifier related functions and such.
+				Container for functions that test the state of inputs.
 				
 				
 					<br /><i>Defined in: </i> <a href="../symbols/src/src_WTF-O-Vision.js.html">WTF-O-Vision.js</a>.
@@ -233,7 +233,7 @@ ul.inheritsList
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class atropa.wtf.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class atropa.inquire.">
 				<caption>Namespace Summary</caption>
 				<thead>
 					<tr>
@@ -246,9 +246,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/atropa.wtf.html#constructor">atropa.wtf</a></b>
+								<b><a href="../symbols/atropa.inquire.html#constructor">atropa.inquire</a></b>
 							</div>
-							<div class="description">Container for all Glorious WTFifier related functions and such.</div>
+							<div class="description">Container for functions that test the state of inputs.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -257,40 +257,12 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
-				
-				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class atropa.wtf.">
-					<caption>Field Summary</caption>
-					<thead>
-						<tr>
-							<th scope="col">Field Attributes</th>
-							<th scope="col">Field Name and Description</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								atropa.wtf.<b><a href="../symbols/atropa.wtf.html#.dictionary">dictionary</a></b>
-								</div>
-								<div class="description">The Glorious WTFification Dictionary: Turning ShitInto Polished Turds.</div>
-							</td>
-						</tr>
-					
-					</tbody>
-				</table>
-				
-				
-				
-			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class atropa.wtf.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class atropa.inquire.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -303,18 +275,45 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">atropa.wtf.<b><a href="../symbols/atropa.wtf.html#.htmlElement">htmlElement</a></b>(elementReference)
+								<div class="fixedFont">atropa.inquire.<b><a href="../symbols/atropa.inquire.html#.hasProperty">hasProperty</a></b>(obj, prop)
 								</div>
-								<div class="description">WTFifies the <code>textContent</code> or <code>value</code> of the given element and replaces the element's innerHTML with a pre block containing the results of WTFification.</div>
+								<div class="description">Checks an object for the existence of a propertyregardless of whether the property was inheritedor not.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">atropa.wtf.<b><a href="../symbols/atropa.wtf.html#.wtfify">wtfify</a></b>(target, outputHTML)
+								<div class="fixedFont">atropa.inquire.<b><a href="../symbols/atropa.inquire.html#.isEmptyString">isEmptyString</a></b>(str)
 								</div>
-								<div class="description">Accepts plain text input and Gloriously WTFifies it.</div>
+								<div class="description">Checks whether the input is an empty string.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">atropa.inquire.<b><a href="../symbols/atropa.inquire.html#.isNull">isNull</a></b>(x)
+								</div>
+								<div class="description">Checks whether the input is null.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">atropa.inquire.<b><a href="../symbols/atropa.inquire.html#.isObject">isObject</a></b>(x)
+								</div>
+								<div class="description">Checks whether the input is an object.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">atropa.inquire.<b><a href="../symbols/atropa.inquire.html#.isObjectNotNull">isObjectNotNull</a></b>(x)
+								</div>
+								<div class="description">Checks whether the input is both an object and not null.</div>
 							</td>
 						</tr>
 					
@@ -335,11 +334,11 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>atropa.wtf</b>
+						<b>atropa.inquire</b>
 				</div>
 				
 				<div class="description">
-					Container for all Glorious WTFifier related functions and such.
+					Container for functions that test the state of inputs.
 					<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com"> Matthew Christopher Kastor-Inare III </a><br /> ☭ Hial Atropa!! ☭.
 				</div>
 				
@@ -352,18 +351,11 @@ ul.inheritsList
 					
 					
 					
-						<dl class="detailList">
-						<dt class="heading">Requires:</dt>
-						
-							<dd><a href="../symbols/atropa.regex.html">atropa.regex</a></dd>
-						
-						</dl>
-					
 					
 						<dl class="detailList">
 						<dt class="heading">See:</dt>
 						
-							<dd><a href="../../../AtropaToolboxTests.html?spec=atropa.wtf">tests</a></dd>
+							<dd><a href="../../../AtropaToolboxTests.html?spec=atropa.inquire">tests</a></dd>
 						
 						</dl>
 					
@@ -373,33 +365,6 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
-				<div class="sectionTitle">
-					Field Detail
-				</div>
-				
-					<a name=".dictionary"> </a>
-					<div class="fixedFont">&lt;static&gt; 
-					
-					
-					<span class="light">atropa.wtf.</span><b>dictionary</b>
-					
-					</div>
-					<div class="description">
-						The Glorious WTFification Dictionary: Turning ShitInto Polished Turds.
-						
-						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com"> Matthew Christopher Kastor-Inare III </a><br /> ☭ Hial Atropa!! ☭.
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					
-				
-			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -407,17 +372,17 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name=".htmlElement"> </a>
+					<a name=".hasProperty"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					<span class="light">{HTMLElement}</span>
-					<span class="light">atropa.wtf.</span><b>htmlElement</b>(elementReference)
+					<span class="light">{Boolean}</span>
+					<span class="light">atropa.inquire.</span><b>hasProperty</b>(obj, prop)
 					
 					</div>
 					<div class="description">
-						WTFifies the <code>textContent</code> or <code>value</code> of the given element and replaces the element's innerHTML with a pre block containing the results of WTFification.
+						Checks an object for the existence of a propertyregardless of whether the property was inheritedor not.
 						
-						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com"> Matthew Christopher Kastor-Inare III </a><br /> ☭ Hial Atropa!! ☭.
 					</div>
 					
 					
@@ -427,10 +392,16 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{HTMLElement}</span> <b>elementReference</b>
+									<span class="light fixedFont">{Object}</span> <b>obj</b>
 									
 								</dt>
-								<dd>A reference to an HTML Element.</dd>
+								<dd>An object which may or may nothave the property identified by prop.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>prop</b>
+									
+								</dt>
+								<dd>A string value representing thename of the property.</dd>
 							
 							</dl>
 						
@@ -441,7 +412,7 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{HTMLElement}</span> Returns the given element after wtfification.</dd>
+								<dd><span class="light fixedFont">{Boolean}</span> Returns true if obj.prop exists,otherwise returns false.</dd>
 							
 							</dl>
 						
@@ -450,15 +421,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".wtfify"> </a>
+					<a name=".isEmptyString"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					<span class="light">{String}</span>
-					<span class="light">atropa.wtf.</span><b>wtfify</b>(target, outputHTML)
+					<span class="light">{Boolean}</span>
+					<span class="light">atropa.inquire.</span><b>isEmptyString</b>(str)
 					
 					</div>
 					<div class="description">
-						Accepts plain text input and Gloriously WTFifies it.
+						Checks whether the input is an empty string.
 						
 						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com"> Matthew Christopher Kastor-Inare III </a><br /> ☭ Hial Atropa!! ☭.
 					</div>
@@ -470,16 +441,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{String}</span> <b>target</b>
+									<span class="light fixedFont">{String}</span> <b>str</b>
 									
 								</dt>
-								<dd>The text to WTFify.</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Boolean}</span> <b>outputHTML</b>
-									
-								</dt>
-								<dd>Specifies if you want the output in HTML format. If false, will output plain text. Defaults to false.</dd>
+								<dd>The string you want to know about</dd>
 							
 							</dl>
 						
@@ -490,7 +455,136 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{String}</span> Returns Genuine WTFified text.</dd>
+								<dd><span class="light fixedFont">{Boolean}</span> Returns true if str is an empty string, otherwise returns false.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isNull"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">atropa.inquire.</span><b>isNull</b>(x)
+					
+					</div>
+					<div class="description">
+						Checks whether the input is null.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com"> Matthew Christopher Kastor-Inare III </a><br /> ☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Mixed}</span> <b>x</b>
+									
+								</dt>
+								<dd>Any input that may or may not be null.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> Returns true if x === null.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isObject"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">atropa.inquire.</span><b>isObject</b>(x)
+					
+					</div>
+					<div class="description">
+						Checks whether the input is an object.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com"> Matthew Christopher Kastor-Inare III </a><br /> ☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Mixed}</span> <b>x</b>
+									
+								</dt>
+								<dd>Any input that may or may not be an object.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> Returns true if typeof(x) === 'object'.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isObjectNotNull"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">atropa.inquire.</span><b>isObjectNotNull</b>(x)
+					
+					</div>
+					<div class="description">
+						Checks whether the input is both an object and not null.
+						
+						<br /><i>Author: </i><a href="mailto:matthewkastor@gmail.com"> Matthew Christopher Kastor-Inare III </a><br /> ☭ Hial Atropa!! ☭.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Mixed}</span> <b>x</b>
+									
+								</dt>
+								<dd>Any input that may or may not be both anobject and null.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> Returns true if x is both an object andnot null. (null is an object).</dd>
 							
 							</dl>
 						
