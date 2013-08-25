@@ -9,10 +9,6 @@
         /// <summary></summary>
         /// <returns type="_global_"/>
                 
-        requirementFn: function() {
-            /// <summary></summary>
-        }
-        
     };
 
     var $x = window._global_;
@@ -59,6 +55,10 @@
             /// <param name="errorMessage" type="String">The error message to use when this class or its
             ///  methods are called in unsupported environments. Defaults to:
             ///  &apos;The atropa.&apos; + className + &apos; class is unsupported in this environment.&apos;;</param>
+        }, 
+        
+        nop: function() {
+            /// <summary></summary>
         }, 
         
         setAsOptionalArg: function(defaultVal, optionalArg) {
@@ -261,6 +261,7 @@
 
     window.atropa.regex = {
         /// <summary></summary>
+        /// <field name="patterns" type="">Regex patterns.</field>
         /// <returns type="atropa.regex"/>
                 
         appendPrefixesAndSuffixes: function(word, threshold) {
@@ -286,6 +287,28 @@
   
 
   
+/* vsdoc for atropa.regex.patterns */
+
+(function (window) {
+    window.atropa.regex = window.atropa.regex || {};
+
+    window.atropa.regex.patterns = {
+        /// <summary></summary>
+        /// <field name="repeatedWords" type="">finds repeated words and phrases</field>
+        /// <field name="paragraphBreaks" type="">finds paragraph breaks</field>
+        /// <field name="lineBreaks" type="">finds line breaks</field>
+        /// <returns type="atropa.regex.patterns"/>
+                
+    };
+
+    var $x = window.atropa.regex.patterns;
+    $x.__namespace = "true";
+    $x.__typeName = "atropa.regex.patterns";
+})(this);
+
+  
+
+  
 /* vsdoc for atropa.string */
 
 (function (window) {
@@ -295,12 +318,43 @@
         /// <summary></summary>
         /// <returns type="atropa.string"/>
                 
+        removeRepeatedWord: function(string) {
+            /// <summary>Replaces repeated words and phrases with a single word or phrase.</summary>
+            /// <param name="string" type="String">The string to remove repeated words from.</param>
+            /// <returns type="String">Returns the given string with repeated words and
+            ///  phrases removed.</returns>
+        }, 
+        
+        lineBreaksToParagraphTags: function(string) {
+            /// <summary>Creates paragraph breaks at every occurrence of two consecutive line breaks.</summary>
+            /// <param name="string" type="String">The string to insert paragraph tags into.</param>
+            /// <returns type="String">Returns the given string with paragraph breaks inserted.</returns>
+        }, 
+        
+        lineBreaksToBreakTags: function(string) {
+            /// <summary>Creates break tags at every line break.</summary>
+            /// <param name="string" type="String">The string to insert break tags into.</param>
+            /// <returns type="String">Returns the given string with break tags inserted.</returns>
+        }, 
+        
+        normalizeEol: function(string) {
+            /// <summary>Normalizes line breaks to `\n`.</summary>
+            /// <param name="string" type="String">The string to normalize.</param>
+            /// <returns type="String">Returns the given string with normalized line breaks.</returns>
+        }, 
+        
         ucFirst: function(string) {
             /// <summary>Converts the first character of a given string to
             /// uppercase.</summary>
             /// <param name="string" type="String">The string for which you want the
             /// first letter to be in upper case.</param>
             /// <returns type="String">The given string with it&apos;s first letter capitalized.</returns>
+        }, 
+        
+        camelize: function(string) {
+            /// <summary>Converts the given string to camel case.</summary>
+            /// <param name="string" type="String">The string to camelize.</param>
+            /// <returns type="String">The camelized string.</returns>
         }, 
         
         countWords: function(someText) {

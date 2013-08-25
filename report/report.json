@@ -1,12 +1,12 @@
 {
   "summary": {
     "total": {
-      "sloc": 806,
-      "maintainability": 70.77735640206836
+      "sloc": 847,
+      "maintainability": 71.29591479181902
     },
     "average": {
-      "sloc": 806,
-      "maintainability": "70.78"
+      "sloc": 847,
+      "maintainability": "71.30"
     }
   },
   "reports": [
@@ -25,37 +25,37 @@
           "line": 13,
           "complexity": {
             "sloc": {
-              "physical": 806,
-              "logical": 739
+              "physical": 847,
+              "logical": 773
             },
             "cyclomatic": 37,
             "halstead": {
               "operators": {
                 "distinct": 34,
-                "total": 1120,
+                "total": 1208,
                 "identifiers": [
                   "__stripped__"
                 ]
               },
               "operands": {
-                "distinct": 1074,
-                "total": 1750,
+                "distinct": 1100,
+                "total": 1864,
                 "identifiers": [
                   "__stripped__"
                 ]
               },
-              "length": 2870,
-              "vocabulary": 1108,
-              "difficulty": 27.70018621973929,
-              "volume": 29026.440016561173,
-              "effort": 804037.7937548369,
-              "bugs": 9.675480005520392,
-              "time": 44668.76631971316
+              "length": 3072,
+              "vocabulary": 1134,
+              "difficulty": 28.80727272727273,
+              "volume": 31172.213529422523,
+              "effort": 897986.4566548554,
+              "bugs": 10.39073784314084,
+              "time": 49888.1364808253
             }
           }
         },
         "module": "src\\WTF-O-Vision.min.js",
-        "maintainability": 70.77735640206836
+        "maintainability": 71.29591479181902
       }
     }
   ]

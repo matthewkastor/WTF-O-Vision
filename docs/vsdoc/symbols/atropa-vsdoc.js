@@ -37,6 +37,10 @@
             ///  &apos;The atropa.&apos; + className + &apos; class is unsupported in this environment.&apos;;</param>
         }, 
         
+        nop: function() {
+            /// <summary></summary>
+        }, 
+        
         setAsOptionalArg: function(defaultVal, optionalArg) {
             /// <summary>Set default values for optional function parameters.</summary>
             /// <param name="defaultVal" type="Mixed">The default value to set.</param>

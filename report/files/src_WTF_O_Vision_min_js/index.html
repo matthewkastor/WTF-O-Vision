@@ -45,21 +45,21 @@
   <div class="row">
     <div class="span6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
-      <p class="stat">70.78</p>
+      <p class="stat">71.30</p>
     </div>
     <div class="span6">
       <h2 class="header">Estimated # Bugs  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
-      <p class="stat">9.68</p>
+      <p class="stat">10.39</p>
     </div>
   </div>
   <div class="row">
     <div class="span6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty"></i></a></h2>
-      <p class="stat">27.70</p>
+      <p class="stat">28.81</p>
     </div>
     <div class="span6">
       <h2 class="header">SLOC/LSLOC <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
-      <p class="stat">806 / 739</p>
+      <p class="stat">847 / 773</p>
     </div>
   </div>
 </div>
@@ -92,7 +92,7 @@
     regexp: true,
     vars: true
 */
-/*global XPathResult */
+/*global XPathResult, module */
 // end header
 var atropa;
 atropa = {};
@@ -115,9 +115,7 @@ atropa.requires = function (className, requirementFn, errorMessage) {
         if (atropa.data[className] === undefined) {
             atropa.data[className] = {};
             if (typeof requirementFn !== 'function') {
-                requirementFn = function () {
-                    return false;
-                };
+                requirementFn = false;
             }
             if (typeof errorMessage !== 'string') {
                 errorMessage = 'The atropa.' + className + ' class is unsupported in this environment.';
@@ -137,6 +135,10 @@ atropa.requires = function (className, requirementFn, errorMessage) {
 };
 atropa.data = {};
 atropa.data.requirements = [];
+atropa.nop = function nop() {
+    'use strict';
+    return null;
+};
 atropa.setAsOptionalArg = function (defaultVal, optionalArg) {
     'use strict';
     if (optionalArg === undefined || optionalArg === null) {
@@ -813,10 +815,40 @@ atropa.wtf.htmlElement = function (elementReference) {
     return elementReference;
 };
 atropa.string = {};
+atropa.string.removeRepeatedWord = function removeRepeatedWord(string) {
+    'use strict';
+    return string.replace(atropa.regex.patterns.repeatedWords, '$1');
+};
+atropa.string.lineBreaksToParagraphTags = function lineBreaksToParagraphTags(string) {
+    'use strict';
+    var out = string.replace(atropa.regex.patterns.paragraphBreaks, '</p><p>');
+    out = '<p>' + out.trim() + '</p>';
+    out = out.replace(/\s+<\/(p|br)>/g, '</$1>');
+    return out;
+};
+atropa.string.lineBreaksToBreakTags = function lineBreaksToBreakTags(string) {
+    'use strict';
+    return string.replace(atropa.regex.patterns.lineBreaks, '<br>');
+};
+atropa.string.normalizeEol = function normalizeEol(string) {
+    'use strict';
+    return string.replace(atropa.regex.patterns.lineBreaks, '\n');
+};
 atropa.string.ucFirst = function ucFirst(string) {
     'use strict';
     string = string.charAt(0).toUpperCase() + string.slice(1);
     return string;
+};
+atropa.string.camelize = function camelize(str) {
+    'use strict';
+    var arr, out;
+    arr = str.split(' ');
+    out = arr.shift();
+    arr = arr.map(function (item) {
+        return atropa.string.ucFirst(item);
+    });
+    out += arr.join('');
+    return out;
 };
 atropa.string.countWords = function countWords(someText) {
     'use strict';
@@ -834,7 +866,7 @@ atropa.string.countWords = function countWords(someText) {
 };
 atropa.string.convertEol = function convertEOL(text, newEOL) {
     'use strict';
-    return text.replace(/(\r\n|\n|\r)/g, newEOL);
+    return text.replace(atropa.regex.patterns.lineBreaks, newEOL);
 };
 atropa.string.offsetWhiteSpace = function offsetWhiteSpace(text, offset) {
     'use strict';
@@ -884,6 +916,11 @@ atropa.string.escapeCdata = function escapeCdata(text) {
     return String(text).replace(/\]\]>/g, ']]]]><![CDATA[>');
 };
 atropa.regex = {};
+atropa.regex.patterns = {
+    repeatedWords: /(\b.{3,}\b)\s*(\1)/g,
+    paragraphBreaks: /(\r\n\r\n|\n\n|\r\r)/g,
+    lineBreaks: /(\r\n|\r|\n)/g
+};
 atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
     'use strict';
     var prefixes, suffixes;
@@ -899,6 +936,10 @@ atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
 };
 while (atropa.data.requirements.length > 0) {
     atropa.data.requirements.pop()();
+}
+try {
+    module.exports = atropa;
+} catch (ignore) {
 }</textarea>
   </div>
 </div>
