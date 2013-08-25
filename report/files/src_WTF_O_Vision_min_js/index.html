@@ -45,21 +45,29 @@
   <div class="row">
     <div class="span6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
-      <p class="stat">71.30</p>
+      <p class="stat">71.29</p>
     </div>
     <div class="span6">
-      <h2 class="header">Estimated # Bugs  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
-      <p class="stat">10.39</p>
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
+      <p class="stat">848</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="span6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="span6">
+      <p id="chart_historical_sloc" class="chart"></p>
     </div>
   </div>
   <div class="row">
     <div class="span6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty"></i></a></h2>
-      <p class="stat">28.81</p>
+      <p class="stat">28.85</p>
     </div>
     <div class="span6">
-      <h2 class="header">SLOC/LSLOC <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
-      <p class="stat">847 / 773</p>
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
+      <p class="stat">10.41</p>
     </div>
   </div>
 </div>
@@ -97,28 +105,28 @@
 var atropa;
 atropa = {};
 atropa.supportCheck = function (className, errorMessage) {
-    'use strict';
+    &#039;use strict&#039;;
     className = String(className);
     errorMessage = errorMessage || atropa.data[className].error;
     errorMessage = String(errorMessage);
-    if (atropa.data[className].support === 'unsupported') {
+    if (atropa.data[className].support === &#039;unsupported&#039;) {
         throw new Error(errorMessage);
     }
 };
 atropa.requires = function (className, requirementFn, errorMessage) {
-    'use strict';
+    &#039;use strict&#039;;
     var check = function () {
         var test = false;
-        if (typeof className !== 'string') {
-            throw new Error('atropa.requires requires the class name to be ' + 'specified');
+        if (typeof className !== &#039;string&#039;) {
+            throw new Error(&#039;atropa.requires requires the class name to be &#039; + &#039;specified&#039;);
         }
         if (atropa.data[className] === undefined) {
             atropa.data[className] = {};
-            if (typeof requirementFn !== 'function') {
+            if (typeof requirementFn !== &#039;function&#039;) {
                 requirementFn = false;
             }
-            if (typeof errorMessage !== 'string') {
-                errorMessage = 'The atropa.' + className + ' class is unsupported in this environment.';
+            if (typeof errorMessage !== &#039;string&#039;) {
+                errorMessage = &#039;The atropa.&#039; + className + &#039; class is unsupported in this environment.&#039;;
             }
             try {
                 test = requirementFn();
@@ -127,7 +135,7 @@ atropa.requires = function (className, requirementFn, errorMessage) {
             }
             atropa.data[className].error = errorMessage;
             if (test === false) {
-                atropa.data[className].support = 'unsupported';
+                atropa.data[className].support = &#039;unsupported&#039;;
             }
         }
     };
@@ -136,11 +144,11 @@ atropa.requires = function (className, requirementFn, errorMessage) {
 atropa.data = {};
 atropa.data.requirements = [];
 atropa.nop = function nop() {
-    'use strict';
+    &#039;use strict&#039;;
     return null;
 };
 atropa.setAsOptionalArg = function (defaultVal, optionalArg) {
-    'use strict';
+    &#039;use strict&#039;;
     if (optionalArg === undefined || optionalArg === null) {
         optionalArg = defaultVal;
     }
@@ -148,13 +156,13 @@ atropa.setAsOptionalArg = function (defaultVal, optionalArg) {
 };
 atropa.arrays = {};
 atropa.arrays.match = function arraysMatch(array1, array2) {
-    'use strict';
+    &#039;use strict&#039;;
     var x, l;
     if (array1.length !== array2.length) {
         return false;
     }
     l = array1.length;
-    for (x = 0; x < l; x += 1) {
+    for (x = 0; x &lt; l; x += 1) {
         if (array1[x] !== array2[x]) {
             return false;
         }
@@ -162,7 +170,7 @@ atropa.arrays.match = function arraysMatch(array1, array2) {
     return true;
 };
 atropa.arrays.subtract = function (a, fromB) {
-    'use strict';
+    &#039;use strict&#039;;
     var the = {};
     the.result = [];
     fromB.forEach(function (item) {
@@ -179,9 +187,9 @@ atropa.arrays.subtract = function (a, fromB) {
     return the.result;
 };
 atropa.arrays.intersect = function intersect(array1, array2) {
-    'use strict';
+    &#039;use strict&#039;;
     var smallArray, largeArray, intersection = [];
-    if (array1.length > array2.length) {
+    if (array1.length &gt; array2.length) {
         largeArray = array1.splice(0);
         smallArray = array2.splice(0);
     } else {
@@ -190,14 +198,14 @@ atropa.arrays.intersect = function intersect(array1, array2) {
     }
     smallArray.forEach(function (item) {
         var idxInLargeArray = largeArray.indexOf(item);
-        if (0 <= idxInLargeArray) {
+        if (0 &lt;= idxInLargeArray) {
             intersection.push(largeArray.splice(idxInLargeArray, 1)[0]);
         }
     });
     return intersection;
 };
 atropa.arrays.getFrequency = function (arr) {
-    'use strict';
+    &#039;use strict&#039;;
     var out = arr.reduce(function (acc, curr) {
             if (acc[curr] === undefined) {
                 acc[curr] = 1;
@@ -209,17 +217,17 @@ atropa.arrays.getFrequency = function (arr) {
     return out;
 };
 atropa.arrays.getUnique = function (largeArray) {
-    'use strict';
+    &#039;use strict&#039;;
     return Object.keys(atropa.arrays.getFrequency(largeArray)).sort();
 };
 atropa.arrays.removeEmptyElements = function (arrayWithEmptyElements) {
-    'use strict';
+    &#039;use strict&#039;;
     return arrayWithEmptyElements.filter(function (item) {
         return !atropa.inquire.isEmptyString(item);
     });
 };
 atropa.arrays.reindex = function reindex(arr) {
-    'use strict';
+    &#039;use strict&#039;;
     var idx, out;
     out = [];
     for (idx in arr) {
@@ -230,69 +238,70 @@ atropa.arrays.reindex = function reindex(arr) {
     return out;
 };
 atropa.arrays.sortNumerically = function sortNumerically(arr) {
-    'use strict';
+    &#039;use strict&#039;;
     return arr.sort(function (a, b) {
         return a - b;
     });
 };
 atropa.arrays.sortAlphabetically = function sortAlphabetically(arr) {
-    'use strict';
+    &#039;use strict&#039;;
     return arr.sort(function (a, b) {
         return a.localeCompare(b);
     });
 };
 atropa.arrays.deleteElement = function (arr, index) {
-    'use strict';
+    &#039;use strict&#039;;
     delete arr[index];
     return atropa.arrays.reindex(arr);
 };
 atropa.inquire = {};
 atropa.inquire.isNull = function (x) {
-    'use strict';
+    &#039;use strict&#039;;
     return x === null;
 };
 atropa.inquire.isObject = function (x) {
-    'use strict';
-    return typeof x === 'object';
+    &#039;use strict&#039;;
+    return typeof x === &#039;object&#039;;
 };
 atropa.inquire.isObjectNotNull = function (x) {
-    'use strict';
-    return atropa.inquire.isObject(x) && !atropa.inquire.isNull(x);
+    &#039;use strict&#039;;
+    return atropa.inquire.isObject(x) &amp;&amp; !atropa.inquire.isNull(x);
 };
 atropa.inquire.hasProperty = function (obj, prop) {
-    'use strict';
+    &#039;use strict&#039;;
     if (atropa.inquire.isObjectNotNull(obj)) {
         return prop in obj;
     }
     return false;
 };
 atropa.inquire.isEmptyString = function (str) {
-    'use strict';
+    &#039;use strict&#039;;
     var out = false;
-    if ('' === str) {
+    if (&#039;&#039; === str) {
         out = true;
     }
     return out;
 };
 (function () {
-    'use strict';
-    atropa.requires('wtf', function () {
+    &#039;use strict&#039;;
+    atropa.requires(&#039;wtf&#039;, function () {
         var supported = true;
         [
             atropa.regex,
             atropa.string.countWords,
-            atropa.setAsOptionalArg
+            atropa.setAsOptionalArg,
+            atropa.wtf.dictionary
         ].forEach(function (prerequisite) {
             if (prerequisite === undefined) {
                 supported = false;
             }
         });
         return supported;
-    }, 'atropa.wtf class is not supported in this environment');
+    }, &#039;atropa.wtf class is not supported in this environment&#039;);
 }());
 (function () {
-    'use strict';
-    atropa.requires('wtfHtmlElement', function () {
+    &#039;use strict&#039;;
+    atropa.requires(&#039;wtfHtmlElement&#039;, function () {
         var supported = true;
         [window].forEach(function (prerequisite) {
             if (prerequisite === undefined) {
@@ -300,471 +309,12 @@ atropa.inquire.isEmptyString = function (str) {
             }
         });
         return supported;
-    }, 'atropa.wtf class is not supported in this environment');
+    }, &#039;atropa.wtf class is not supported in this environment&#039;);
 }());
 atropa.wtf = {};
-atropa.wtf.dictionary = {
-    'novelty quickly wears off': 'dumb shit gits old fast',
-    'the way it is': 'how it be',
-    'put up with': 'manhandle',
-    'yet': 'immediately',
-    'lose': 'shake',
-    'for no reason': 'maiacally',
-    'given a choice': 'extorted',
-    'not strong enough': 'ain\'t got the nuts',
-    'now at an end': 'brand spankin new',
-    'be together': 'mash up',
-    'apocalypse': 'party time',
-    'nothing is assured': 'we live to deliver',
-    'to no avail': 'for great good',
-    'too good to be true': 'fucking fantastic',
-    'growing apart': 'fucking other people',
-    'rest in peace': 'party like it\'s 1999',
-    'back stab': 'rump shake',
-    'back stabb': 'rump shake',
-    'look into their eyes': 'give them AIDS',
-    'look into her eyes': 'give her AIDS',
-    'look into his eyes': 'give him AIDS',
-    'can\'t live without': 'touch myself about',
-    'can\'t be without': 'touch myself about',
-    'could never be without': 'can\'t work anal beads without',
-    'no matter': 'irregardless of',
-    'will be there': 'stick like shit',
-    'will always be there': 'stick like wet shit',
-    'holding them close to': 'handcuffing them to',
-    'by your side': 'on your ass',
-    'by my side': 'on my ass',
-    'by his side': 'on his ass',
-    'by her side': 'on her ass',
-    'leave your side': 'get off your ass',
-    'leave my side': 'get off my ass',
-    'leave his side': 'get off his ass',
-    'leave her side': 'get off her ass',
-    'doesn\'t happen over': 'cartwheels straight across',
-    'means many things': 'is best described with lies',
-    'laying in bed': 'taking a shit',
-    'promise': 'lie',
-    'liar': 'fibber',
-    'lie': 'fib',
-    'lies': 'fibs',
-    'what\'s the point': 'the fucks this mean',
-    'it must be true': 'for real \'n\' shit',
-    'what people say': 'muthaphukkas be talkin',
-    'etched': 'ground',
-    'don\'t have a clue': 'got shit twisted',
-    'viscious cycle': 'clusterfuck',
-    'don\'t need': 'could give a fuck about',
-    'raven': 'pigeon',
-    'to get away': 'to fucking run',
-    'to a better': 'for some glittered',
-    'beautiful face': 'enormous tits',
-    'might as well': 'oh fuck I oughtta',
-    'the first moment': 'straightaway',
-    'as well': 'also',
-    'so good': 'neato',
-    'could do anything': 'is fucking insane',
-    'set the mood': 'whip it out',
-    'baby if': 'look bitch,',
-    'through your hair': 'upside your head',
-    'entered the house of': 'got up in the barn for',
-    'always love you the same': 'always love you like my other suckers',
-    'kissing other': 'going down on',
-    'never thought you would do that': 'got turned out like a dumb fuck',
-    'laying on the floor': 'begging for it',
-    'first laid eyes on': 'first tried groping',
-    'most people can only': 'most freaks and dope fiends',
-    'you were the one': 'you were my target',
-    'standing out from the crowd': 'wobbling like an elephant on a bicycle',
-    'stood out from the crowd': 'jiggled like a jello Santa',
-    'stand out from the crowd': 'look like a jackass',
-    'stands out from the crowd': 'smells like old dick',
-    'i\'ve never felt this way': 'i\'ve done this',
-    'with every fiber': 'from pithy pits',
-    'wander': 'stumble',
-    'haunt': 'stalk',
-    'mask': 'trashbag',
-    'demonic angel': 'ass pirate',
-    'angelic demon': 'ass pirate',
-    'cunning': 'desperate',
-    'dangerous': 'cock catching',
-    'demi-god': 'punk bitch',
-    'demigod': 'punk bitch',
-    'mortal': 'queer',
-    'immortal': 'whiny',
-    'betrayal': 'game',
-    'betray': 'screw',
-    'gave up on': 'don\'t give a fuck about',
-    'give up on': 'won\'t give a fuck about',
-    'given up on': 'don\'t give a fuck about',
-    'giving up on': 'ain\'t givin a fuck about',
-    'coffin': 'tobogan',
-    'beautiful': 'gaudy',
-    'the best': 'the baddest',
-    'selfish': 'thieving',
-    'walked out': 'narrowly escaped',
-    'walk out': 'narrowly escape',
-    'walking out': 'narrowly escaping',
-    'got in your way': 'got all up in your shit',
-    'try': 'shoot',
-    'the point of no return': 'the fat girls bedrooom door',
-    'only wanted': 'begged for',
-    'guess it doesn\'t matter': 'know this shit is pointless',
-    'look back': 'lick windows',
-    'path': 'sidewalk',
-    'shine': 'bling',
-    'in the middle of': 'all up in',
-    'deep down inside': 'in the bottom of the tank',
-    'piece by piece': 'one handjob at a time',
-    'aura': 'stench',
-    'candle': 'glowstick',
-    'for her': 'to that broads',
-    'for she': '\'cause the cunt',
-    'for he': 'this dumb mother fucker',
-    'forest': 'campground',
-    'hand in hand': 'cock to jaw',
-    'hand to hold': 'nuts to grip',
-    'girl meets boy': 'horny kids hook up',
-    'boy meets girl': 'horny kids hook up',
-    'sunny': 'sweltering',
-    'so nervous': 'so fucking drunk',
-    'kiss': 'slap',
-    'fingertips': 'chicken nuggets',
-    'tell you i\'m fine': 'screm I\'M FUCKIN OK',
-    'write': 'scrawl',
-    'written': 'scrawled',
-    'wrote': 'scrawled',
-    'first of all': 'mm-kay',
-    'bring forth': 'whip out',
-    'into the light': 'on to the light',
-    'the only one': 'fucking stupid',
-    'to the light': 'out in public',
-    'talk': 'cuss',
-    'full of life': 'full of shit',
-    'can\'t find the words to say': 'could blurt out some dumb shit',
-    'consume': 'suck',
-    'consuming': 'sucking',
-    'pillow': 'stone',
-    'advice': 'bullshit',
-    'universe': 'toilet bowl',
-    'elder': 'old folk',
-    'magick': 'delusion',
-    'magic': 'hope',
-    'arcane': 'foolish',
-    'speak of': 'talk about',
-    'shall': 'should-will',
-    'obtain': 'get',
-    'battle': 'squabble',
-    'midnight': 'daybreak',
-    'sorrow': 'whimper',
-    'crimson': 'azure',
-    'black': 'yellow',
-    'won\'t make it through': 'could shimmy past',
-    'night': 'bedtime',
-    'day': 'morning',
-    'fragile': 'sturdy',
-    'crack': 'mend',
-    'solitude': 'ambiance',
-    'torment': 'tickle',
-    'incantation': 'much yammering',
-    'hopeless': 'pitiful',
-    'depressing': 'inebriating',
-    'depressed': 'drunk',
-    'depression': 'so much booze',
-    'saddened': 'made flaccid',
-    'sadness': 'impotence',
-    'neverending': 'never ending',
-    'never ending': 'relentless',
-    'never going': 'fucked for trying',
-    'change one thing': 'fuck some\'n up',
-    'never end': 'drag on',
-    'will not heal': 'festers',
-    'outward appearance': 'facade',
-    'emo': 'closet homo',
-    'blackened walls': 'filthy rooms',
-    'farewell': 'adios',
-    'meet again': 'have another go-round',
-    'sadd': 'flaccid',
-    'sad': 'impotent',
-    'amidst': 'all up in',
-    'midst': 'pants',
-    'knowledge': 'trivia',
-    'known': 'got',
-    'know': 'get',
-    'knew': 'got',
-    'passionate': 'delirious',
-    'passion': 'delirium',
-    'o\'': 'uh',
-    'o': 'uh',
-    'fang': 'denture',
-    'curse': 'stain',
-    'love': 'confuse',
-    'vampiric': 'pedophilic',
-    'vampyre': 'pedophyle',
-    'vampire': 'pedophile',
-    'problem': 'useless concern',
-    'feel': 'fondle',
-    'woe': 'chlamydia',
-    'empty': 'bloated',
-    'hatred': 'odium',
-    'hate': 'dislike',
-    'scarred': 'striated',
-    'scars': 'striae',
-    'scare': 'tickle',
-    'scary': 'tickly',
-    'scar': 'stria',
-    'wound': 'ouchie',
-    'slit': 'crevice',
-    'slice': 'pet',
-    'twas': 'it was',
-    'big brother': 'my paranoia',
-    'eternity': 'awhile',
-    'eternally': 'for a bit',
-    'eternal': 'imagined',
-    'prophet': 'insomniac',
-    'prophecies': 'wives tales',
-    'prophecy': 'wives tale',
-    'soldier': 'maniac',
-    'militia': 'gang',
-    'military': 'gangster',
-    'militant': 'maniacal',
-    'goddess': 'Kylee Strutt',
-    'higher power': 'crusty sock',
-    'dark': 'effervescent',
-    'ancient': 'elderly',
-    'quest': 'stroll',
-    'heartbeat': 'cock beat',
-    'heart': 'cock',
-    'blood': 'grease',
-    'bleed': 'whine',
-    'cut': 'mutilate',
-    'slash': 'mutilate',
-    'moonlight': 'moonshine',
-    'moon': 'night light',
-    'steel': 'latex',
-    'knife': 'dildo',
-    'razorblade': 'butt plug',
-    'razor': 'dildo',
-    'blade': 'handle',
-    'pain': 'hot sex',
-    'emotional': 'childish',
-    'emotion': 'lubricant',
-    'teardrop': 'tear drop',
-    'tear': 'sperme',
-    'castle': 'chateau',
-    'world': 'hand towel',
-    'dead': 'inert',
-    'goodbye': 'peace y\'all',
-    'good-bye': 'get the fuck out',
-    'good bye': 'fuck off',
-    'death': 'Santa',
-    'pale': 'sexy',
-    'drift': 'him-haw',
-    'fade': 'him-haw',
-    'flesh': 'twinkie',
-    'corpse': 'mannequin',
-    'skin': 'twinkies',
-    'putrid': 'pleasant',
-    'breathe': 'pause awkwardly',
-    'breath': 'awkward pause',
-    'stopp': 'push',
-    'stop': 'push',
-    'scream': 'grunt',
-    'think': 'scheme',
-    'spiritual': 'banana craving',
-    'spirit': 'banana',
-    'soul': 'banana',
-    'ghost': 'imaginary friend',
-    'monster': 'dislexic lover',
-    'beast': 'erection',
-    'demon': 'hard-on',
-    'angel': 'porn star',
-    'shooting star': 'swift missile',
-    'star': 'missile',
-    'lost': 'aroused',
-    'time': 'throbbing',
-    'cheek': 'rump',
-    'fingers': 'sausage',
-    'daydream': 'fantasize',
-    'the spring': 'tube sock',
-    'spring': 'tube socks',
-    'illusion': 'drunken mistake',
-    'loneliness': 'arousal',
-    'lonely': 'horny',
-    'alone': 'ecstatic',
-    'lone': 'single',
-    'perfect': 'fucked',
-    'hidden': 'stashed',
-    'mystery': 'neon sign',
-    'mysteries': 'neon signs',
-    'rose': 'butt hole',
-    'petal': 'dingleberry',
-    'different': 'awkward',
-    'wrong': 'buzzing',
-    'fate': 'coincidence',
-    'cold': 'fuzzy',
-    'hellfire': 'hell fire',
-    'hell': 'my cock\'s',
-    'crystal': 'bedazler',
-    'rainbow': 'pizzazz',
-    'rain': 'jizzum',
-    'storm': 'orgy',
-    'wind': 'blow',
-    'breeze': 'draft',
-    'brilliance': 'shinyness',
-    'brilliant': 'shiny',
-    'dreamland': 'obsession island',
-    'dreams': 'obsessions',
-    'dream': 'obsess',
-    'prison': 'outhouse',
-    'golden ray': 'gaudy scribble',
-    'ray': 'scribble',
-    'deadly': 'fertile',
-    'truth': 'trivia',
-    'sun': 'yellow disk',
-    'cruel': 'haphazard',
-    'cloud': 'balloon',
-    'twinkle': 'strobe',
-    'twinkling': 'strobing',
-    'escape': 'snuggle',
-    'understand': 'stroke my ego',
-    'remember': 'mumble',
-    'illumination': 'mumbo jumbo',
-    'reality': 'toilet bowl',
-    'bind': 'coddle',
-    'bound': 'coddled',
-    'torn': 'huggled',
-    'died': 'made marshmallows',
-    'dies': 'makes marshmallows',
-    'die': 'make marshmallows',
-    'dying': 'making marshmallows',
-    'body': 'jiggling clump',
-    'bodies': 'jiggling piles',
-    'warfare': 'children laughing',
-    'debutantes': 'hookers',
-    'slave': 'gimp',
-    'poetic': 'flatulent',
-    'poetry': 'bad gas',
-    'poet': 'hobo',
-    'poem': 'scribble',
-    'country': 'bathroom',
-    'naked': 'unshaved',
-    'jesus christ': 'jim bob jr',
-    'christ': 'jim bob jr',
-    'jesus': 'jim bob jr',
-    'healer': 'fondler',
-    'gods': 'jim bob sr et al.',
-    'god': 'jim bob sr',
-    'weapon': 'pocket pussy',
-    'existence': 'whatever',
-    'minion': 'horny pirate',
-    'raping': 'what',
-    'rape': 'what',
-    'gravestone': 'mile marker',
-    'grave': 'personal space',
-    'infinite': 'abstract',
-    'suicide': 'murder',
-    'brink': 'border',
-    'cried': 'came',
-    'cries': 'skeets',
-    'crying': 'cumming',
-    'had done': 'done did',
-    'cry': 'cum',
-    'cryptic': 'drunken',
-    'crypt': 'urinal',
-    'mystic': 'transexual',
-    'balanced individual': 'psycho',
-    'balanced person': 'psycho',
-    'balanced man': 'psycho',
-    'balanced woman': 'psycho',
-    'wisdom': 'bull shit',
-    'wise': 'bull shitting',
-    'blessed be': 'suck eggs',
-    'energy': 'juice',
-    'riddle': 'polka dot',
-    'my lord': 'sweet palm',
-    'so mote it be': 'it\'s real in my head',
-    'pray': 'murmur',
-    'nomad': 'drunk hobo',
-    'destiny': 'taxes',
-    'sword': 'dildo',
-    'void': 'bucket',
-    'just': 'sure',
-    'vengeance': 'slap happiness',
-    'avenge': 'git rowdy for',
-    'venge': '-rowdy-',
-    'heavens': 'skies',
-    'heaven': 'sky',
-    'endless': 'real long',
-    'valley': 'ditch',
-    'arduous': 'not easy',
-    'touch': 'grope',
-    'wretched': 'skeezy',
-    'wretch': 'skeeze',
-    'awe': 'fearful reverence',
-    'ritual': 'banana dance',
-    'behold': 'oogle',
-    'veil': 'disguise',
-    'vista': 'scene',
-    'always': 'usually',
-    'believe': 'buy',
-    'wish': 'want',
-    'fell': 'flopped',
-    'fall': 'flop',
-    'righteous': 'arrogant',
-    'warrior': 'kitten',
-    'uncaring': 'prickish',
-    'care to give': 'shit to give',
-    'take care of': 'decimate',
-    'taking care': 'forgeting',
-    'takes care': 'forgets',
-    'take care': 'forget',
-    'forget': 'disremember',
-    'caring': 'giving a shit',
-    'cared': 'gave a shit',
-    'care': 'give a shit',
-    'wield': 'jerk',
-    'ocean': 'sewer',
-    'sea': 'bath',
-    'bay': 'sink',
-    'twilight': 'moonshine',
-    'broken': 'beaten',
-    'broke': 'beat',
-    'break': 'beat',
-    'forever': 'so very',
-    'human race': 'gerbil empire',
-    'nightmare': 'tantrum',
-    'suffer': 'pirouette',
-    'myself': 'my muchness',
-    'me': 'i',
-    'my': 'i\'s ',
-    'mine': 'i\'s',
-    'was i': 'were i',
-    'am i': 'are i',
-    'im': 'i\'m',
-    'i\'m': 'i are',
-    'i\'ve': 'i have',
-    'i\'ll': 'i will',
-    'i am': 'i are',
-    'yourself': 'you\'s muchness',
-    'yours': 'you\'s',
-    'your': 'you\'s',
-    'you all': 'all you',
-    'you\'ll': 'you will',
-    'you\'ve': 'you has',
-    'you\'re': 'you is',
-    'thee': 'you',
-    'thine': 'you\'s',
-    'thou': 'you',
-    'we': 'they',
-    'us': 'them',
-    'our': 'their',
-    'ours': 'theirs',
-    'i': 'Kevin',
-    'you': 'Retards'
-};
 atropa.wtf.wtfify = function (target, outputHTML) {
-    'use strict';
-    atropa.supportCheck('wtf');
+    &#039;use strict&#039;;
+    atropa.supportCheck(&#039;wtf&#039;);
     var regexValue, replacementText, oldWord, wtfCount, wordCount, ret, word;
     if (true !== outputHTML) {
         outputHTML = false;
@@ -774,18 +324,18 @@ atropa.wtf.wtfify = function (target, outputHTML) {
     target = target.trim();
     wordCount = atropa.string.countWords(target);
     if (true === outputHTML) {
-        target = target.replace(/(\. ?){2,}/gi, '<span style="color : brown ;"> [shit taco] </span>');
-        target = '<p> ' + target.replace(/(\r\n|\r|\n)/g, ' <br/> ') + ' </p>';
+        target = target.replace(/(\. ?){2,}/gi, &#039;&lt;span style=&quot;color : brown ;&quot;&gt; [shit taco] &lt;/span&gt;&#039;);
+        target = &#039;&lt;p&gt; &#039; + target.replace(/(\r\n|\r|\n)/g, &#039; &lt;br/&gt; &#039;) + &#039; &lt;/p&gt;&#039;;
     } else {
-        target = target.replace(/(\. ?){2,}/gi, ' [shit taco] ');
+        target = target.replace(/(\. ?){2,}/gi, &#039; [shit taco] &#039;);
     }
     replacementText = function (m, sub1, sub2) {
         wtfCount++;
-        sub1 = atropa.setAsOptionalArg('', sub1);
-        sub2 = atropa.setAsOptionalArg('', sub2);
+        sub1 = atropa.setAsOptionalArg(&#039;&#039;, sub1);
+        sub2 = atropa.setAsOptionalArg(&#039;&#039;, sub2);
         var out;
         if (true === outputHTML) {
-            out = '<span style="color : red ;">' + sub1 + atropa.wtf.dictionary[word] + sub2 + '</span>';
+            out = &#039;&lt;span style=&quot;color : red ;&quot;&gt;&#039; + sub1 + atropa.wtf.dictionary[word] + sub2 + &#039;&lt;/span&gt;&#039;;
         } else {
             out = sub1 + atropa.wtf.dictionary[word] + sub2;
         }
@@ -794,7 +344,7 @@ atropa.wtf.wtfify = function (target, outputHTML) {
     for (word in atropa.wtf.dictionary) {
         if (atropa.wtf.dictionary.hasOwnProperty(word)) {
             oldWord = atropa.regex.appendPrefixesAndSuffixes(word);
-            regexValue = new RegExp(oldWord, 'gi');
+            regexValue = new RegExp(oldWord, &#039;gi&#039;);
             target = target.replace(regexValue, replacementText);
         }
     }
@@ -805,57 +355,516 @@ atropa.wtf.wtfify = function (target, outputHTML) {
     return ret;
 };
 atropa.wtf.htmlElement = function (elementReference) {
-    'use strict';
-    atropa.supportCheck('wtfHtmlElement');
+    &#039;use strict&#039;;
+    atropa.supportCheck(&#039;wtfHtmlElement&#039;);
     var wtfified, txt;
-    elementReference.innerHTML = elementReference.innerHTML.replace(/<br>(\s+)?(\r\n|\r|\n)?/g, '\r\n');
+    elementReference.innerHTML = elementReference.innerHTML.replace(/&lt;br&gt;(\s+)?(\r\n|\r|\n)?/g, &#039;\r\n&#039;);
     txt = elementReference.value || elementReference.textContent;
     wtfified = atropa.wtf.wtfify(txt, true);
-    elementReference.innerHTML = '<pre style="color:black; background:white; white-space:pre-wrap;">' + wtfified.txt + '</pre>';
+    elementReference.innerHTML = &#039;&lt;pre style=&quot;color:black; background:white; white-space:pre-wrap;&quot;&gt;&#039; + wtfified.txt + &#039;&lt;/pre&gt;&#039;;
     return elementReference;
+};
+atropa.wtf.dictionary = {
+    &#039;novelty quickly wears off&#039;: &#039;dumb shit gits old fast&#039;,
+    &#039;the way it is&#039;: &#039;how it be&#039;,
+    &#039;put up with&#039;: &#039;manhandle&#039;,
+    &#039;yet&#039;: &#039;immediately&#039;,
+    &#039;lose&#039;: &#039;shake&#039;,
+    &#039;for no reason&#039;: &#039;maiacally&#039;,
+    &#039;given a choice&#039;: &#039;extorted&#039;,
+    &#039;not strong enough&#039;: &#039;ain\&#039;t got the nuts&#039;,
+    &#039;now at an end&#039;: &#039;brand spankin new&#039;,
+    &#039;be together&#039;: &#039;mash up&#039;,
+    &#039;apocalypse&#039;: &#039;party time&#039;,
+    &#039;nothing is assured&#039;: &#039;we live to deliver&#039;,
+    &#039;to no avail&#039;: &#039;for great good&#039;,
+    &#039;too good to be true&#039;: &#039;fucking fantastic&#039;,
+    &#039;growing apart&#039;: &#039;fucking other people&#039;,
+    &#039;rest in peace&#039;: &#039;party like it\&#039;s 1999&#039;,
+    &#039;back stab&#039;: &#039;rump shake&#039;,
+    &#039;back stabb&#039;: &#039;rump shake&#039;,
+    &#039;look into their eyes&#039;: &#039;give them AIDS&#039;,
+    &#039;look into her eyes&#039;: &#039;give her AIDS&#039;,
+    &#039;look into his eyes&#039;: &#039;give him AIDS&#039;,
+    &#039;can\&#039;t live without&#039;: &#039;touch myself about&#039;,
+    &#039;can\&#039;t be without&#039;: &#039;touch myself about&#039;,
+    &#039;could never be without&#039;: &#039;can\&#039;t work anal beads without&#039;,
+    &#039;no matter&#039;: &#039;irregardless of&#039;,
+    &#039;will be there&#039;: &#039;stick like shit&#039;,
+    &#039;will always be there&#039;: &#039;stick like wet shit&#039;,
+    &#039;holding them close to&#039;: &#039;handcuffing them to&#039;,
+    &#039;by your side&#039;: &#039;on your ass&#039;,
+    &#039;by my side&#039;: &#039;on my ass&#039;,
+    &#039;by his side&#039;: &#039;on his ass&#039;,
+    &#039;by her side&#039;: &#039;on her ass&#039;,
+    &#039;leave your side&#039;: &#039;get off your ass&#039;,
+    &#039;leave my side&#039;: &#039;get off my ass&#039;,
+    &#039;leave his side&#039;: &#039;get off his ass&#039;,
+    &#039;leave her side&#039;: &#039;get off her ass&#039;,
+    &#039;doesn\&#039;t happen over&#039;: &#039;cartwheels straight across&#039;,
+    &#039;means many things&#039;: &#039;is best described with lies&#039;,
+    &#039;laying in bed&#039;: &#039;taking a shit&#039;,
+    &#039;promise&#039;: &#039;lie&#039;,
+    &#039;liar&#039;: &#039;fibber&#039;,
+    &#039;lie&#039;: &#039;fib&#039;,
+    &#039;lies&#039;: &#039;fibs&#039;,
+    &#039;what\&#039;s the point&#039;: &#039;the fucks this mean&#039;,
+    &#039;it must be true&#039;: &#039;for real \&#039;n\&#039; shit&#039;,
+    &#039;what people say&#039;: &#039;muthaphukkas be talkin&#039;,
+    &#039;etched&#039;: &#039;ground&#039;,
+    &#039;don\&#039;t have a clue&#039;: &#039;got shit twisted&#039;,
+    &#039;viscious cycle&#039;: &#039;clusterfuck&#039;,
+    &#039;don\&#039;t need&#039;: &#039;could give a fuck about&#039;,
+    &#039;raven&#039;: &#039;pigeon&#039;,
+    &#039;to get away&#039;: &#039;to fucking run&#039;,
+    &#039;to a better&#039;: &#039;for some glittered&#039;,
+    &#039;beautiful face&#039;: &#039;enormous tits&#039;,
+    &#039;might as well&#039;: &#039;oh fuck I oughtta&#039;,
+    &#039;the first moment&#039;: &#039;straightaway&#039;,
+    &#039;as well&#039;: &#039;also&#039;,
+    &#039;so good&#039;: &#039;neato&#039;,
+    &#039;could do anything&#039;: &#039;is fucking insane&#039;,
+    &#039;set the mood&#039;: &#039;whip it out&#039;,
+    &#039;baby if&#039;: &#039;look bitch,&#039;,
+    &#039;through your hair&#039;: &#039;upside your head&#039;,
+    &#039;entered the house of&#039;: &#039;got up in the barn for&#039;,
+    &#039;always love you the same&#039;: &#039;always love you like my other suckers&#039;,
+    &#039;kissing other&#039;: &#039;going down on&#039;,
+    &#039;never thought you would do that&#039;: &#039;got turned out like a dumb fuck&#039;,
+    &#039;laying on the floor&#039;: &#039;begging for it&#039;,
+    &#039;first laid eyes on&#039;: &#039;first tried groping&#039;,
+    &#039;most people can only&#039;: &#039;most freaks and dope fiends&#039;,
+    &#039;you were the one&#039;: &#039;you were my target&#039;,
+    &#039;standing out from the crowd&#039;: &#039;wobbling like an elephant on a bicycle&#039;,
+    &#039;stood out from the crowd&#039;: &#039;jiggled like a jello Santa&#039;,
+    &#039;stand out from the crowd&#039;: &#039;look like a jackass&#039;,
+    &#039;stands out from the crowd&#039;: &#039;smells like old dick&#039;,
+    &#039;i\&#039;ve never felt this way&#039;: &#039;i\&#039;ve done this&#039;,
+    &#039;with every fiber&#039;: &#039;from pithy pits&#039;,
+    &#039;wander&#039;: &#039;stumble&#039;,
+    &#039;haunt&#039;: &#039;stalk&#039;,
+    &#039;mask&#039;: &#039;trashbag&#039;,
+    &#039;demonic angel&#039;: &#039;ass pirate&#039;,
+    &#039;angelic demon&#039;: &#039;ass pirate&#039;,
+    &#039;cunning&#039;: &#039;desperate&#039;,
+    &#039;dangerous&#039;: &#039;cock catching&#039;,
+    &#039;demi-god&#039;: &#039;punk bitch&#039;,
+    &#039;demigod&#039;: &#039;punk bitch&#039;,
+    &#039;mortal&#039;: &#039;queer&#039;,
+    &#039;immortal&#039;: &#039;whiny&#039;,
+    &#039;betrayal&#039;: &#039;game&#039;,
+    &#039;betray&#039;: &#039;screw&#039;,
+    &#039;gave up on&#039;: &#039;don\&#039;t give a fuck about&#039;,
+    &#039;give up on&#039;: &#039;won\&#039;t give a fuck about&#039;,
+    &#039;given up on&#039;: &#039;don\&#039;t give a fuck about&#039;,
+    &#039;giving up on&#039;: &#039;ain\&#039;t givin a fuck about&#039;,
+    &#039;coffin&#039;: &#039;tobogan&#039;,
+    &#039;beautiful&#039;: &#039;gaudy&#039;,
+    &#039;the best&#039;: &#039;the baddest&#039;,
+    &#039;selfish&#039;: &#039;thieving&#039;,
+    &#039;walked out&#039;: &#039;narrowly escaped&#039;,
+    &#039;walk out&#039;: &#039;narrowly escape&#039;,
+    &#039;walking out&#039;: &#039;narrowly escaping&#039;,
+    &#039;got in your way&#039;: &#039;got all up in your shit&#039;,
+    &#039;try&#039;: &#039;shoot&#039;,
+    &#039;the point of no return&#039;: &#039;the fat girls bedrooom door&#039;,
+    &#039;only wanted&#039;: &#039;begged for&#039;,
+    &#039;guess it doesn\&#039;t matter&#039;: &#039;know this shit is pointless&#039;,
+    &#039;look back&#039;: &#039;lick windows&#039;,
+    &#039;path&#039;: &#039;sidewalk&#039;,
+    &#039;shine&#039;: &#039;bling&#039;,
+    &#039;in the middle of&#039;: &#039;all up in&#039;,
+    &#039;deep down inside&#039;: &#039;in the bottom of the tank&#039;,
+    &#039;piece by piece&#039;: &#039;one handjob at a time&#039;,
+    &#039;aura&#039;: &#039;stench&#039;,
+    &#039;candle&#039;: &#039;glowstick&#039;,
+    &#039;for her&#039;: &#039;to that broads&#039;,
+    &#039;for she&#039;: &#039;\&#039;cause the cunt&#039;,
+    &#039;for he&#039;: &#039;this dumb mother fucker&#039;,
+    &#039;forest&#039;: &#039;campground&#039;,
+    &#039;hand in hand&#039;: &#039;cock to jaw&#039;,
+    &#039;hand to hold&#039;: &#039;nuts to grip&#039;,
+    &#039;girl meets boy&#039;: &#039;horny kids hook up&#039;,
+    &#039;boy meets girl&#039;: &#039;horny kids hook up&#039;,
+    &#039;sunny&#039;: &#039;sweltering&#039;,
+    &#039;so nervous&#039;: &#039;so fucking drunk&#039;,
+    &#039;kiss&#039;: &#039;slap&#039;,
+    &#039;fingertips&#039;: &#039;chicken nuggets&#039;,
+    &#039;tell you i\&#039;m fine&#039;: &#039;screm I\&#039;M FUCKIN OK&#039;,
+    &#039;write&#039;: &#039;scrawl&#039;,
+    &#039;written&#039;: &#039;scrawled&#039;,
+    &#039;wrote&#039;: &#039;scrawled&#039;,
+    &#039;first of all&#039;: &#039;mm-kay&#039;,
+    &#039;bring forth&#039;: &#039;whip out&#039;,
+    &#039;into the light&#039;: &#039;on to the light&#039;,
+    &#039;the only one&#039;: &#039;fucking stupid&#039;,
+    &#039;to the light&#039;: &#039;out in public&#039;,
+    &#039;talk&#039;: &#039;cuss&#039;,
+    &#039;full of life&#039;: &#039;full of shit&#039;,
+    &#039;can\&#039;t find the words to say&#039;: &#039;could blurt out some dumb shit&#039;,
+    &#039;consume&#039;: &#039;suck&#039;,
+    &#039;consuming&#039;: &#039;sucking&#039;,
+    &#039;pillow&#039;: &#039;stone&#039;,
+    &#039;advice&#039;: &#039;bullshit&#039;,
+    &#039;universe&#039;: &#039;toilet bowl&#039;,
+    &#039;elder&#039;: &#039;old folk&#039;,
+    &#039;magick&#039;: &#039;delusion&#039;,
+    &#039;magic&#039;: &#039;hope&#039;,
+    &#039;arcane&#039;: &#039;foolish&#039;,
+    &#039;speak of&#039;: &#039;talk about&#039;,
+    &#039;shall&#039;: &#039;should-will&#039;,
+    &#039;obtain&#039;: &#039;get&#039;,
+    &#039;battle&#039;: &#039;squabble&#039;,
+    &#039;midnight&#039;: &#039;daybreak&#039;,
+    &#039;sorrow&#039;: &#039;whimper&#039;,
+    &#039;crimson&#039;: &#039;azure&#039;,
+    &#039;black&#039;: &#039;yellow&#039;,
+    &#039;won\&#039;t make it through&#039;: &#039;could shimmy past&#039;,
+    &#039;night&#039;: &#039;bedtime&#039;,
+    &#039;day&#039;: &#039;morning&#039;,
+    &#039;fragile&#039;: &#039;sturdy&#039;,
+    &#039;crack&#039;: &#039;mend&#039;,
+    &#039;solitude&#039;: &#039;ambiance&#039;,
+    &#039;torment&#039;: &#039;tickle&#039;,
+    &#039;incantation&#039;: &#039;much yammering&#039;,
+    &#039;hopeless&#039;: &#039;pitiful&#039;,
+    &#039;depressing&#039;: &#039;inebriating&#039;,
+    &#039;depressed&#039;: &#039;drunk&#039;,
+    &#039;depression&#039;: &#039;so much booze&#039;,
+    &#039;saddened&#039;: &#039;made flaccid&#039;,
+    &#039;sadness&#039;: &#039;impotence&#039;,
+    &#039;neverending&#039;: &#039;never ending&#039;,
+    &#039;never ending&#039;: &#039;relentless&#039;,
+    &#039;never going&#039;: &#039;fucked for trying&#039;,
+    &#039;change one thing&#039;: &#039;fuck some\&#039;n up&#039;,
+    &#039;never end&#039;: &#039;drag on&#039;,
+    &#039;will not heal&#039;: &#039;festers&#039;,
+    &#039;outward appearance&#039;: &#039;facade&#039;,
+    &#039;emo&#039;: &#039;closet homo&#039;,
+    &#039;blackened walls&#039;: &#039;filthy rooms&#039;,
+    &#039;farewell&#039;: &#039;adios&#039;,
+    &#039;meet again&#039;: &#039;have another go-round&#039;,
+    &#039;sadd&#039;: &#039;flaccid&#039;,
+    &#039;sad&#039;: &#039;impotent&#039;,
+    &#039;amidst&#039;: &#039;all up in&#039;,
+    &#039;midst&#039;: &#039;pants&#039;,
+    &#039;knowledge&#039;: &#039;trivia&#039;,
+    &#039;known&#039;: &#039;got&#039;,
+    &#039;know&#039;: &#039;get&#039;,
+    &#039;knew&#039;: &#039;got&#039;,
+    &#039;passionate&#039;: &#039;delirious&#039;,
+    &#039;passion&#039;: &#039;delirium&#039;,
+    &#039;o\&#039;&#039;: &#039;uh&#039;,
+    &#039;o&#039;: &#039;uh&#039;,
+    &#039;fang&#039;: &#039;denture&#039;,
+    &#039;curse&#039;: &#039;stain&#039;,
+    &#039;love&#039;: &#039;confuse&#039;,
+    &#039;vampiric&#039;: &#039;pedophilic&#039;,
+    &#039;vampyre&#039;: &#039;pedophyle&#039;,
+    &#039;vampire&#039;: &#039;pedophile&#039;,
+    &#039;problem&#039;: &#039;useless concern&#039;,
+    &#039;feel&#039;: &#039;fondle&#039;,
+    &#039;woe&#039;: &#039;chlamydia&#039;,
+    &#039;empty&#039;: &#039;bloated&#039;,
+    &#039;hatred&#039;: &#039;odium&#039;,
+    &#039;hate&#039;: &#039;dislike&#039;,
+    &#039;scarred&#039;: &#039;striated&#039;,
+    &#039;scars&#039;: &#039;striae&#039;,
+    &#039;scare&#039;: &#039;tickle&#039;,
+    &#039;scary&#039;: &#039;tickly&#039;,
+    &#039;scar&#039;: &#039;stria&#039;,
+    &#039;wound&#039;: &#039;ouchie&#039;,
+    &#039;slit&#039;: &#039;crevice&#039;,
+    &#039;slice&#039;: &#039;pet&#039;,
+    &#039;twas&#039;: &#039;it was&#039;,
+    &#039;big brother&#039;: &#039;my paranoia&#039;,
+    &#039;eternity&#039;: &#039;awhile&#039;,
+    &#039;eternally&#039;: &#039;for a bit&#039;,
+    &#039;eternal&#039;: &#039;imagined&#039;,
+    &#039;prophet&#039;: &#039;insomniac&#039;,
+    &#039;prophecies&#039;: &#039;wives tales&#039;,
+    &#039;prophecy&#039;: &#039;wives tale&#039;,
+    &#039;soldier&#039;: &#039;maniac&#039;,
+    &#039;militia&#039;: &#039;gang&#039;,
+    &#039;military&#039;: &#039;gangster&#039;,
+    &#039;militant&#039;: &#039;maniacal&#039;,
+    &#039;goddess&#039;: &#039;Kylee Strutt&#039;,
+    &#039;higher power&#039;: &#039;crusty sock&#039;,
+    &#039;dark&#039;: &#039;effervescent&#039;,
+    &#039;ancient&#039;: &#039;elderly&#039;,
+    &#039;quest&#039;: &#039;stroll&#039;,
+    &#039;heartbeat&#039;: &#039;cock beat&#039;,
+    &#039;heart&#039;: &#039;cock&#039;,
+    &#039;blood&#039;: &#039;grease&#039;,
+    &#039;bleed&#039;: &#039;whine&#039;,
+    &#039;cut&#039;: &#039;mutilate&#039;,
+    &#039;slash&#039;: &#039;mutilate&#039;,
+    &#039;moonlight&#039;: &#039;moonshine&#039;,
+    &#039;moon&#039;: &#039;night light&#039;,
+    &#039;steel&#039;: &#039;latex&#039;,
+    &#039;knife&#039;: &#039;dildo&#039;,
+    &#039;razorblade&#039;: &#039;butt plug&#039;,
+    &#039;razor&#039;: &#039;dildo&#039;,
+    &#039;blade&#039;: &#039;handle&#039;,
+    &#039;pain&#039;: &#039;hot sex&#039;,
+    &#039;emotional&#039;: &#039;childish&#039;,
+    &#039;emotion&#039;: &#039;lubricant&#039;,
+    &#039;teardrop&#039;: &#039;tear drop&#039;,
+    &#039;tear&#039;: &#039;sperme&#039;,
+    &#039;castle&#039;: &#039;chateau&#039;,
+    &#039;world&#039;: &#039;hand towel&#039;,
+    &#039;dead&#039;: &#039;inert&#039;,
+    &#039;goodbye&#039;: &#039;peace y\&#039;all&#039;,
+    &#039;good-bye&#039;: &#039;get the fuck out&#039;,
+    &#039;good bye&#039;: &#039;fuck off&#039;,
+    &#039;death&#039;: &#039;Santa&#039;,
+    &#039;pale&#039;: &#039;sexy&#039;,
+    &#039;drift&#039;: &#039;him-haw&#039;,
+    &#039;fade&#039;: &#039;him-haw&#039;,
+    &#039;flesh&#039;: &#039;twinkie&#039;,
+    &#039;corpse&#039;: &#039;mannequin&#039;,
+    &#039;skin&#039;: &#039;twinkies&#039;,
+    &#039;putrid&#039;: &#039;pleasant&#039;,
+    &#039;breathe&#039;: &#039;pause awkwardly&#039;,
+    &#039;breath&#039;: &#039;awkward pause&#039;,
+    &#039;stopp&#039;: &#039;push&#039;,
+    &#039;stop&#039;: &#039;push&#039;,
+    &#039;scream&#039;: &#039;grunt&#039;,
+    &#039;think&#039;: &#039;scheme&#039;,
+    &#039;spiritual&#039;: &#039;banana craving&#039;,
+    &#039;spirit&#039;: &#039;banana&#039;,
+    &#039;soul&#039;: &#039;banana&#039;,
+    &#039;ghost&#039;: &#039;imaginary friend&#039;,
+    &#039;monster&#039;: &#039;dislexic lover&#039;,
+    &#039;beast&#039;: &#039;erection&#039;,
+    &#039;demon&#039;: &#039;hard-on&#039;,
+    &#039;angel&#039;: &#039;porn star&#039;,
+    &#039;shooting star&#039;: &#039;swift missile&#039;,
+    &#039;star&#039;: &#039;missile&#039;,
+    &#039;lost&#039;: &#039;aroused&#039;,
+    &#039;time&#039;: &#039;throbbing&#039;,
+    &#039;cheek&#039;: &#039;rump&#039;,
+    &#039;fingers&#039;: &#039;sausage&#039;,
+    &#039;daydream&#039;: &#039;fantasize&#039;,
+    &#039;the spring&#039;: &#039;tube sock&#039;,
+    &#039;spring&#039;: &#039;tube socks&#039;,
+    &#039;illusion&#039;: &#039;drunken mistake&#039;,
+    &#039;loneliness&#039;: &#039;arousal&#039;,
+    &#039;lonely&#039;: &#039;horny&#039;,
+    &#039;alone&#039;: &#039;ecstatic&#039;,
+    &#039;lone&#039;: &#039;single&#039;,
+    &#039;perfect&#039;: &#039;fucked&#039;,
+    &#039;hidden&#039;: &#039;stashed&#039;,
+    &#039;mystery&#039;: &#039;neon sign&#039;,
+    &#039;mysteries&#039;: &#039;neon signs&#039;,
+    &#039;rose&#039;: &#039;butt hole&#039;,
+    &#039;petal&#039;: &#039;dingleberry&#039;,
+    &#039;different&#039;: &#039;awkward&#039;,
+    &#039;wrong&#039;: &#039;buzzing&#039;,
+    &#039;fate&#039;: &#039;coincidence&#039;,
+    &#039;cold&#039;: &#039;fuzzy&#039;,
+    &#039;hellfire&#039;: &#039;hell fire&#039;,
+    &#039;hell&#039;: &#039;my cock\&#039;s&#039;,
+    &#039;crystal&#039;: &#039;bedazler&#039;,
+    &#039;rainbow&#039;: &#039;pizzazz&#039;,
+    &#039;rain&#039;: &#039;jizzum&#039;,
+    &#039;storm&#039;: &#039;orgy&#039;,
+    &#039;wind&#039;: &#039;blow&#039;,
+    &#039;breeze&#039;: &#039;draft&#039;,
+    &#039;brilliance&#039;: &#039;shinyness&#039;,
+    &#039;brilliant&#039;: &#039;shiny&#039;,
+    &#039;dreamland&#039;: &#039;obsession island&#039;,
+    &#039;dreams&#039;: &#039;obsessions&#039;,
+    &#039;dream&#039;: &#039;obsess&#039;,
+    &#039;prison&#039;: &#039;outhouse&#039;,
+    &#039;golden ray&#039;: &#039;gaudy scribble&#039;,
+    &#039;ray&#039;: &#039;scribble&#039;,
+    &#039;deadly&#039;: &#039;fertile&#039;,
+    &#039;truth&#039;: &#039;trivia&#039;,
+    &#039;sun&#039;: &#039;yellow disk&#039;,
+    &#039;cruel&#039;: &#039;haphazard&#039;,
+    &#039;cloud&#039;: &#039;balloon&#039;,
+    &#039;twinkle&#039;: &#039;strobe&#039;,
+    &#039;twinkling&#039;: &#039;strobing&#039;,
+    &#039;escape&#039;: &#039;snuggle&#039;,
+    &#039;understand&#039;: &#039;stroke my ego&#039;,
+    &#039;remember&#039;: &#039;mumble&#039;,
+    &#039;illumination&#039;: &#039;mumbo jumbo&#039;,
+    &#039;reality&#039;: &#039;toilet bowl&#039;,
+    &#039;bind&#039;: &#039;coddle&#039;,
+    &#039;bound&#039;: &#039;coddled&#039;,
+    &#039;torn&#039;: &#039;huggled&#039;,
+    &#039;died&#039;: &#039;made marshmallows&#039;,
+    &#039;dies&#039;: &#039;makes marshmallows&#039;,
+    &#039;die&#039;: &#039;make marshmallows&#039;,
+    &#039;dying&#039;: &#039;making marshmallows&#039;,
+    &#039;body&#039;: &#039;jiggling clump&#039;,
+    &#039;bodies&#039;: &#039;jiggling piles&#039;,
+    &#039;warfare&#039;: &#039;children laughing&#039;,
+    &#039;debutantes&#039;: &#039;hookers&#039;,
+    &#039;slave&#039;: &#039;gimp&#039;,
+    &#039;poetic&#039;: &#039;flatulent&#039;,
+    &#039;poetry&#039;: &#039;bad gas&#039;,
+    &#039;poet&#039;: &#039;hobo&#039;,
+    &#039;poem&#039;: &#039;scribble&#039;,
+    &#039;country&#039;: &#039;bathroom&#039;,
+    &#039;naked&#039;: &#039;unshaved&#039;,
+    &#039;jesus christ&#039;: &#039;jim bob jr&#039;,
+    &#039;christ&#039;: &#039;jim bob jr&#039;,
+    &#039;jesus&#039;: &#039;jim bob jr&#039;,
+    &#039;healer&#039;: &#039;fondler&#039;,
+    &#039;gods&#039;: &#039;jim bob sr et al.&#039;,
+    &#039;god&#039;: &#039;jim bob sr&#039;,
+    &#039;weapon&#039;: &#039;pocket pussy&#039;,
+    &#039;existence&#039;: &#039;whatever&#039;,
+    &#039;minion&#039;: &#039;horny pirate&#039;,
+    &#039;raping&#039;: &#039;what&#039;,
+    &#039;rape&#039;: &#039;what&#039;,
+    &#039;gravestone&#039;: &#039;mile marker&#039;,
+    &#039;grave&#039;: &#039;personal space&#039;,
+    &#039;infinite&#039;: &#039;abstract&#039;,
+    &#039;suicide&#039;: &#039;murder&#039;,
+    &#039;brink&#039;: &#039;border&#039;,
+    &#039;cried&#039;: &#039;came&#039;,
+    &#039;cries&#039;: &#039;skeets&#039;,
+    &#039;crying&#039;: &#039;cumming&#039;,
+    &#039;had done&#039;: &#039;done did&#039;,
+    &#039;cry&#039;: &#039;cum&#039;,
+    &#039;cryptic&#039;: &#039;drunken&#039;,
+    &#039;crypt&#039;: &#039;urinal&#039;,
+    &#039;mystic&#039;: &#039;transexual&#039;,
+    &#039;balanced individual&#039;: &#039;psycho&#039;,
+    &#039;balanced person&#039;: &#039;psycho&#039;,
+    &#039;balanced man&#039;: &#039;psycho&#039;,
+    &#039;balanced woman&#039;: &#039;psycho&#039;,
+    &#039;wisdom&#039;: &#039;bull shit&#039;,
+    &#039;wise&#039;: &#039;bull shitting&#039;,
+    &#039;blessed be&#039;: &#039;suck eggs&#039;,
+    &#039;energy&#039;: &#039;juice&#039;,
+    &#039;riddle&#039;: &#039;polka dot&#039;,
+    &#039;my lord&#039;: &#039;sweet palm&#039;,
+    &#039;so mote it be&#039;: &#039;it\&#039;s real in my head&#039;,
+    &#039;pray&#039;: &#039;murmur&#039;,
+    &#039;nomad&#039;: &#039;drunk hobo&#039;,
+    &#039;destiny&#039;: &#039;taxes&#039;,
+    &#039;sword&#039;: &#039;dildo&#039;,
+    &#039;void&#039;: &#039;bucket&#039;,
+    &#039;just&#039;: &#039;sure&#039;,
+    &#039;vengeance&#039;: &#039;slap happiness&#039;,
+    &#039;avenge&#039;: &#039;git rowdy for&#039;,
+    &#039;venge&#039;: &#039;-rowdy-&#039;,
+    &#039;heavens&#039;: &#039;skies&#039;,
+    &#039;heaven&#039;: &#039;sky&#039;,
+    &#039;endless&#039;: &#039;real long&#039;,
+    &#039;valley&#039;: &#039;ditch&#039;,
+    &#039;arduous&#039;: &#039;not easy&#039;,
+    &#039;touch&#039;: &#039;grope&#039;,
+    &#039;wretched&#039;: &#039;skeezy&#039;,
+    &#039;wretch&#039;: &#039;skeeze&#039;,
+    &#039;awe&#039;: &#039;fearful reverence&#039;,
+    &#039;ritual&#039;: &#039;banana dance&#039;,
+    &#039;behold&#039;: &#039;oogle&#039;,
+    &#039;veil&#039;: &#039;disguise&#039;,
+    &#039;vista&#039;: &#039;scene&#039;,
+    &#039;always&#039;: &#039;usually&#039;,
+    &#039;believe&#039;: &#039;buy&#039;,
+    &#039;wish&#039;: &#039;want&#039;,
+    &#039;fell&#039;: &#039;flopped&#039;,
+    &#039;fall&#039;: &#039;flop&#039;,
+    &#039;righteous&#039;: &#039;arrogant&#039;,
+    &#039;warrior&#039;: &#039;kitten&#039;,
+    &#039;uncaring&#039;: &#039;prickish&#039;,
+    &#039;care to give&#039;: &#039;shit to give&#039;,
+    &#039;take care of&#039;: &#039;decimate&#039;,
+    &#039;taking care&#039;: &#039;forgeting&#039;,
+    &#039;takes care&#039;: &#039;forgets&#039;,
+    &#039;take care&#039;: &#039;forget&#039;,
+    &#039;forget&#039;: &#039;disremember&#039;,
+    &#039;caring&#039;: &#039;giving a shit&#039;,
+    &#039;cared&#039;: &#039;gave a shit&#039;,
+    &#039;care&#039;: &#039;give a shit&#039;,
+    &#039;wield&#039;: &#039;jerk&#039;,
+    &#039;ocean&#039;: &#039;sewer&#039;,
+    &#039;sea&#039;: &#039;bath&#039;,
+    &#039;bay&#039;: &#039;sink&#039;,
+    &#039;twilight&#039;: &#039;moonshine&#039;,
+    &#039;broken&#039;: &#039;beaten&#039;,
+    &#039;broke&#039;: &#039;beat&#039;,
+    &#039;break&#039;: &#039;beat&#039;,
+    &#039;forever&#039;: &#039;so very&#039;,
+    &#039;human race&#039;: &#039;gerbil empire&#039;,
+    &#039;nightmare&#039;: &#039;tantrum&#039;,
+    &#039;suffer&#039;: &#039;pirouette&#039;,
+    &#039;myself&#039;: &#039;my muchness&#039;,
+    &#039;me&#039;: &#039;i&#039;,
+    &#039;my&#039;: &#039;i\&#039;s &#039;,
+    &#039;mine&#039;: &#039;i\&#039;s&#039;,
+    &#039;was i&#039;: &#039;were i&#039;,
+    &#039;am i&#039;: &#039;are i&#039;,
+    &#039;im&#039;: &#039;i\&#039;m&#039;,
+    &#039;i\&#039;m&#039;: &#039;i are&#039;,
+    &#039;i\&#039;ve&#039;: &#039;i have&#039;,
+    &#039;i\&#039;ll&#039;: &#039;i will&#039;,
+    &#039;i am&#039;: &#039;i are&#039;,
+    &#039;yourself&#039;: &#039;you\&#039;s muchness&#039;,
+    &#039;yours&#039;: &#039;you\&#039;s&#039;,
+    &#039;your&#039;: &#039;you\&#039;s&#039;,
+    &#039;you all&#039;: &#039;all you&#039;,
+    &#039;you\&#039;ll&#039;: &#039;you will&#039;,
+    &#039;you\&#039;ve&#039;: &#039;you has&#039;,
+    &#039;you\&#039;re&#039;: &#039;you is&#039;,
+    &#039;thee&#039;: &#039;you&#039;,
+    &#039;thine&#039;: &#039;you\&#039;s&#039;,
+    &#039;thou&#039;: &#039;you&#039;,
+    &#039;we&#039;: &#039;they&#039;,
+    &#039;us&#039;: &#039;them&#039;,
+    &#039;our&#039;: &#039;their&#039;,
+    &#039;ours&#039;: &#039;theirs&#039;,
+    &#039;i&#039;: &#039;Kevin&#039;,
+    &#039;you&#039;: &#039;Retards&#039;
 };
 atropa.string = {};
 atropa.string.removeRepeatedWord = function removeRepeatedWord(string) {
-    'use strict';
-    return string.replace(atropa.regex.patterns.repeatedWords, '$1');
+    &#039;use strict&#039;;
+    return string.replace(atropa.regex.patterns.repeatedWords, &#039;$1&#039;);
 };
 atropa.string.lineBreaksToParagraphTags = function lineBreaksToParagraphTags(string) {
-    'use strict';
-    var out = string.replace(atropa.regex.patterns.paragraphBreaks, '</p><p>');
-    out = '<p>' + out.trim() + '</p>';
-    out = out.replace(/\s+<\/(p|br)>/g, '</$1>');
+    &#039;use strict&#039;;
+    var out = string.replace(atropa.regex.patterns.paragraphBreaks, &#039;&lt;/p&gt;&lt;p&gt;&#039;);
+    out = &#039;&lt;p&gt;&#039; + out.trim() + &#039;&lt;/p&gt;&#039;;
+    out = out.replace(/\s+&lt;\/(p|br)&gt;/g, &#039;&lt;/$1&gt;&#039;);
     return out;
 };
 atropa.string.lineBreaksToBreakTags = function lineBreaksToBreakTags(string) {
-    'use strict';
-    return string.replace(atropa.regex.patterns.lineBreaks, '<br>');
+    &#039;use strict&#039;;
+    return string.replace(atropa.regex.patterns.lineBreaks, &#039;&lt;br&gt;&#039;);
 };
 atropa.string.normalizeEol = function normalizeEol(string) {
-    'use strict';
-    return string.replace(atropa.regex.patterns.lineBreaks, '\n');
+    &#039;use strict&#039;;
+    return string.replace(atropa.regex.patterns.lineBreaks, &#039;\n&#039;);
 };
 atropa.string.ucFirst = function ucFirst(string) {
-    'use strict';
+    &#039;use strict&#039;;
     string = string.charAt(0).toUpperCase() + string.slice(1);
     return string;
 };
 atropa.string.camelize = function camelize(str) {
-    'use strict';
+    &#039;use strict&#039;;
     var arr, out;
-    arr = str.split(' ');
+    arr = str.split(&#039; &#039;);
     out = arr.shift();
     arr = arr.map(function (item) {
         return atropa.string.ucFirst(item);
     });
-    out += arr.join('');
+    out += arr.join(&#039;&#039;);
     return out;
 };
 atropa.string.countWords = function countWords(someText) {
-    'use strict';
+    &#039;use strict&#039;;
     var wordCount, re, len = 0;
-    if (someText !== undefined && someText !== null) {
+    if (someText !== undefined &amp;&amp; someText !== null) {
         someText = someText.trim();
-        if (someText !== '') {
+        if (someText !== &#039;&#039;) {
             wordCount = 0;
             re = /\s+/gi;
             wordCount = someText.split(re);
@@ -865,55 +874,55 @@ atropa.string.countWords = function countWords(someText) {
     return len;
 };
 atropa.string.convertEol = function convertEOL(text, newEOL) {
-    'use strict';
+    &#039;use strict&#039;;
     return text.replace(atropa.regex.patterns.lineBreaks, newEOL);
 };
 atropa.string.offsetWhiteSpace = function offsetWhiteSpace(text, offset) {
-    'use strict';
+    &#039;use strict&#039;;
     var regx;
-    regx = new RegExp('^ {' + offset + '}');
-    text = text.replace(regx, '');
+    regx = new RegExp(&#039;^ {&#039; + offset + &#039;}&#039;);
+    text = text.replace(regx, &#039;&#039;);
     return text;
 };
 atropa.string.normalizeWhiteSpacePrefix = function normalizeWhiteSpacePrefix(text) {
-    'use strict';
+    &#039;use strict&#039;;
     var prefix = text.match(/^\s*/);
     if (prefix) {
         prefix = prefix[0];
-        prefix = prefix.replace(/\t/g, '    ');
+        prefix = prefix.replace(/\t/g, &#039;    &#039;);
         text = text.replace(/^\s*/, prefix);
     }
     return text;
 };
 atropa.string.normalizeWhiteSpace = function normalizeWhiteSpace(text) {
-    'use strict';
-    text = text.replace(/\t/g, '    ');
+    &#039;use strict&#039;;
+    text = text.replace(/\t/g, &#039;    &#039;);
     return text;
 };
 atropa.string.getOffset = function getOffset(text) {
-    'use strict';
+    &#039;use strict&#039;;
     var offset = 0, leadingChar = text.charAt(0);
-    if (leadingChar === ' ' || leadingChar === '\t') {
-        while (text.charAt(offset) === leadingChar && offset < text.length) {
+    if (leadingChar === &#039; &#039; || leadingChar === &#039;\t&#039;) {
+        while (text.charAt(offset) === leadingChar &amp;&amp; offset &lt; text.length) {
             offset++;
         }
     }
     return offset;
 };
 atropa.string.getWords = function (text) {
-    'use strict';
+    &#039;use strict&#039;;
     var out = [];
     function invalidChars(element) {
-        var matched = /^[\-'’`]+$/.test(element);
+        var matched = /^[\-&#039;’`]+$/.test(element);
         return !matched;
     }
-    out = atropa.arrays.removeEmptyElements(text.split(/[^A-Za-z\-'’`]+/gi));
+    out = atropa.arrays.removeEmptyElements(text.split(/[^A-Za-z\-&#039;’`]+/gi));
     out = out.filter(invalidChars);
     return out;
 };
 atropa.string.escapeCdata = function escapeCdata(text) {
-    'use strict';
-    return String(text).replace(/\]\]>/g, ']]]]><![CDATA[>');
+    &#039;use strict&#039;;
+    return String(text).replace(/\]\]&gt;/g, &#039;]]]]&gt;&lt;![CDATA[&gt;&#039;);
 };
 atropa.regex = {};
 atropa.regex.patterns = {
@@ -922,19 +931,19 @@ atropa.regex.patterns = {
     lineBreaks: /(\r\n|\r|\n)/g
 };
 atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
-    'use strict';
+    &#039;use strict&#039;;
     var prefixes, suffixes;
-    prefixes = '(pre|un|re)?';
-    suffixes = '(ification|' + 'tionally|' + 'ication|' + 'ified|istic|iness|' + 'fare|tion|ance|ence|less|ally|able|ness|ized|ised|' + 'ous|ify|ing|ity|ful|ant|ate|est|ism|izm|ist|' + 'ic|al|ed|er|et|ly|rs|in|' + 'y|s|r|d)?';
+    prefixes = &#039;(pre|un|re)?&#039;;
+    suffixes = &#039;(ification|&#039; + &#039;tionally|&#039; + &#039;ication|&#039; + &#039;ified|istic|iness|&#039; + &#039;fare|tion|ance|ence|less|ally|able|ness|ized|ised|&#039; + &#039;ous|ify|ing|ity|ful|ant|ate|est|ism|izm|ist|&#039; + &#039;ic|al|ed|er|et|ly|rs|in|&#039; + &#039;y|s|r|d)?&#039;;
     threshold = threshold === undefined ? 3 : threshold;
-    if (word.length > threshold) {
-        word = '\\b' + prefixes + word + suffixes + '\\b';
+    if (word.length &gt; threshold) {
+        word = &#039;\\b&#039; + prefixes + word + suffixes + &#039;\\b&#039;;
     } else {
-        word = '\\b()' + word + '()\\b';
+        word = &#039;\\b()&#039; + word + &#039;()\\b&#039;;
     }
     return word;
 };
-while (atropa.data.requirements.length > 0) {
+while (atropa.data.requirements.length &gt; 0) {
     atropa.data.requirements.pop()();
 }
 try {
@@ -963,10 +972,7 @@ try {
 <script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
 <script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
 <script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
 <script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
-<script>
-  $('[rel=popover]').popover();
-</script>
-
 </body>
 </html>
