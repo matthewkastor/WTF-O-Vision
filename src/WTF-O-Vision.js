@@ -9,7 +9,7 @@
     regexp: true,
     vars: true
 */
-/*global XPathResult */
+/*global XPathResult, module */
 // end header
 /**
  * WTF-O-Vision
@@ -83,7 +83,7 @@ atropa.requires = function (className, requirementFn, errorMessage) {
             atropa.data[className] = {};
             
             if(typeof requirementFn !== 'function') {
-                requirementFn = function () { return false; };
+                requirementFn = false;
             }
             
             if(typeof errorMessage !== 'string') {
@@ -118,7 +118,10 @@ atropa.data = {};
 
 atropa.data.requirements = [];
 
-
+atropa.nop = function nop () {
+    "use strict";
+    return null;
+};
 
 /**
  * Set default values for optional function parameters.
@@ -643,7 +646,7 @@ atropa.inquire.hasProperty = function (obj, prop) {
  * @returns {Boolean} Returns true if str is an empty string,
  *  otherwise returns false.
  */
- atropa.inquire.isEmptyString = function (str) {
+atropa.inquire.isEmptyString = function (str) {
     "use strict";
     var out = false;
     if ('' === str) {
@@ -1240,6 +1243,8 @@ atropa.wtf.wtfify = function (target, outputHTML) {
         }
         return out;
     };
+    // word is defined in the containing scope and
+    // is not global, jshint is wrong
     for (word in atropa.wtf.dictionary) {
         if (atropa.wtf.dictionary.hasOwnProperty(word)) {
             oldWord = atropa.regex.appendPrefixesAndSuffixes(word);
@@ -1285,9 +1290,66 @@ atropa.wtf.htmlElement = function (elementReference) {
  *  Matthew Christopher Kastor-Inare III </a><br />
  *  ☭ Hial Atropa!! ☭
  * @namespace A few utilities for manipulating strings.
+ * @requires atropa.regex.patterns
  * @see <a href="../../../AtropaToolboxTests.html?spec=atropa.string">tests</a>
  */
 atropa.string = {};
+/**
+ * Replaces repeated words and phrases with a single word or phrase.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @version 20130701
+ * @param {String} string The string to remove repeated words from.
+ * @returns {String} Returns the given string with repeated words and
+ *  phrases removed.
+ */
+atropa.string.removeRepeatedWord = function removeRepeatedWord (string) {
+    "use strict";
+    return string.replace(atropa.regex.patterns.repeatedWords, '$1');
+};
+/**
+ * Creates paragraph breaks at every occurrence of two consecutive line breaks.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @version 20130701
+ * @param {String} string The string to insert paragraph tags into.
+ * @returns {String} Returns the given string with paragraph breaks inserted.
+ */
+atropa.string.lineBreaksToParagraphTags = function lineBreaksToParagraphTags (string) {
+    "use strict";
+    var out = string.replace(atropa.regex.patterns.paragraphBreaks, '</p><p>');
+    out = '<p>' + out.trim() + '</p>';
+    out = out.replace(/\s+<\/(p|br)>/g, '</$1>');
+    return out;
+};
+/**
+ * Creates break tags at every line break.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @version 20130701
+ * @param {String} string The string to insert break tags into.
+ * @returns {String} Returns the given string with break tags inserted.
+ */
+atropa.string.lineBreaksToBreakTags = function lineBreaksToBreakTags (string) {
+    "use strict";
+    return string.replace(atropa.regex.patterns.lineBreaks, '<br>');
+};
+/**
+ * Normalizes line breaks to `\n`.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @version 20130701
+ * @param {String} string The string to normalize.
+ * @returns {String} Returns the given string with normalized line breaks.
+ */
+atropa.string.normalizeEol = function normalizeEol (string) {
+    "use strict";
+    return string.replace(atropa.regex.patterns.lineBreaks, '\n');
+};
 /**
  * Converts the first character of a given string to
  * uppercase.
@@ -1303,6 +1365,29 @@ atropa.string.ucFirst = function ucFirst(string) {
     "use strict";
     string = string.charAt(0).toUpperCase() + string.slice(1);
     return string;
+};
+/**
+ * Converts the given string to camel case.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @version 20130823
+ * @param {String} string The string to camelize.
+ * @returns {String} The camelized string.
+ * @example
+ *  atropa.string.camelize('get it together');
+ *  // returns "getItTogether"
+ */
+atropa.string.camelize = function camelize (str) {
+    "use strict";
+    var arr, out;
+    arr = str.split(' ');
+    out = arr.shift();
+    arr = arr.map(function (item) {
+        return atropa.string.ucFirst(item);
+    });
+    out += arr.join('');
+    return out;
 };
 /**
  * Counts words.
@@ -1327,7 +1412,6 @@ atropa.string.countWords = function countWords(someText) {
     }
     return len;
 };
-
 /**
  * Converts end of line markers into whatever you want. 
  * Automatically detects any of \r\n, \n, or \r and 
@@ -1341,7 +1425,7 @@ atropa.string.countWords = function countWords(someText) {
  */
 atropa.string.convertEol = function convertEOL(text, newEOL) {
     'use strict';
-    return text.replace(/(\r\n|\n|\r)/g, newEOL);
+    return text.replace(atropa.regex.patterns.lineBreaks, newEOL);
 };
 
 /**
@@ -1480,6 +1564,21 @@ atropa.string.escapeCdata = function escapeCdata(text) {
  */
 atropa.regex = {};
 /**
+ * Regex patterns.
+ * @author <a href="mailto:matthewkastor@gmail.com">
+ *  Matthew Christopher Kastor-Inare III </a><br />
+ *  ☭ Hial Atropa!! ☭
+ * @namespace Regex patterns.
+ */
+atropa.regex.patterns = {
+    /** finds repeated words and phrases */
+    repeatedWords : /(\b.{3,}\b)\s*(\1)/g,
+    /** finds paragraph breaks */
+    paragraphBreaks : /(\r\n\r\n|\n\n|\r\r)/g,
+    /** finds line breaks */
+    lineBreaks : /(\r\n|\r|\n)/g
+};
+/**
  * Appends common prefix, suffix, and word boundary regex strings to
  * the supplied word.
  * @author <a href="mailto:matthewkastor@gmail.com">
@@ -1520,9 +1619,15 @@ atropa.regex.appendPrefixesAndSuffixes = function (word, threshold) {
 };
 
 
-
 while(atropa.data.requirements.length > 0) {
     atropa.data.requirements.pop()();
+}
+
+
+try {
+    module.exports = atropa;
+} catch (ignore) {
+    // module.exports does not exist.
 }
 
 
