@@ -85,12 +85,8 @@ atropa.requires = function (className, requirementFn, errorMessage) {
             if(typeof requirementFn !== 'function') {
                 requirementFn = false;
             }
-            
-            if(typeof errorMessage !== 'string') {
-                errorMessage = 'The atropa.' + className +
+            errorMessage = errorMessage || 'The atropa.' + className +
                     ' class is unsupported in this environment.';
-            }
-            
             try {
                 test = requirementFn();
             } catch (e) {
@@ -527,24 +523,25 @@ atropa.arrays.sortNumerically = function sortNumerically(arr) {
     });
 };
 /**
- * Sorts an array's elements lexicographically.
- * @author <a href="mailto:matthewkastor@gmail.com">
- *  Matthew Christopher Kastor-Inare III </a><br />
- *  ☭ Hial Atropa!! ☭
- * @version 20130120
- * @param {Array} arr The array to sort. All elements of the array must be
- *  strings.
- * @returns {Array} Returns an array whose elements are in alphabetic order.
- * @example
- *  var x = ['Z','a', '1', '2', '10', 'A', 'z'];
- *  console.log( atropa.arrays.sortAlphabetically(x) );
- *  // logs ["1", "10", "2", "a", "A", "z", "Z"]
+ * Throws an error, <code>String.prototype.localeCompare</code> is not 
+ *  standardized.
+ * 
+ *  Yes, localeCompare is in the standard but, at this time the actual
+ *  comparison is implementation dependant. This means that "alphabetical order"
+ *  can be different on different platforms. What I found was that in node the
+ *  array of <code>['a','Z','A','z']</code> would be sorted to
+ *  <code>['A','Z','a','z"]</code>, while on
+ *  firefox it would be sorted to <code>['a','A','z','Z']</code>. Who knows if
+ *  another implementor would sort it <code>['A','a','Z','z']</code>?
+ * 
+ * In order to provide a reliable implementation I would have to create my own
+ *  implementation of <code>String.prototype.localeCompare</code> and that's
+ *  just too much work for me to do alone.
+ * @throws {Error} "String.prototype.localeCompare is not standardized"
  */
 atropa.arrays.sortAlphabetically = function sortAlphabetically(arr) {
     "use strict";
-    return arr.sort(function (a, b) {
-        return a.localeCompare(b);
-    });
+    throw new Error("String.prototype.localeCompare is not standardized");
 };
 /**
  * Deletes the given element from the array at the given index. It basically
@@ -667,16 +664,14 @@ atropa.inquire.isEmptyString = function (str) {
             [
                 atropa.regex,
                 atropa.string.countWords,
-                atropa.setAsOptionalArg,
-                atropa.wtf.dictionary
+                atropa.setAsOptionalArg
             ].forEach(function (prerequisite) {
                 if(prerequisite === undefined) {
                     supported = false;
                 }
             });
             return supported;
-        },
-        'atropa.wtf class is not supported in this environment'
+        }
     );
 }());
 
@@ -695,8 +690,7 @@ atropa.inquire.isEmptyString = function (str) {
                 }
             });
             return supported;
-        },
-        'atropa.wtf class is not supported in this environment'
+        }
     );
 }());
 

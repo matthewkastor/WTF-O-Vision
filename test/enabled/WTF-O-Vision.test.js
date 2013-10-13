@@ -276,12 +276,12 @@ describe('atropa.arrays', function () {
     });
 
     describe('sortAlphabetically', function () {
-        it('sorts arrays composed of string elements alphabetically',
+        it('throws an error',
             function () {
-                expect(
+                expect(function () {
                     aa.sortAlphabetically(
                         ['Z','a', '1', '2', '10', 'A', 'z'])
-                ).toEqual(["1", "10", "2", "a", "A", "z", "Z"]);
+                }).toThrow("String.prototype.localeCompare is not standardized");
             }
         );
     });
@@ -605,16 +605,12 @@ describe("atropa.wtf", function() {
             });
         } catch (e) {
             describe('class is not supported in this environment', function () {
+                function x () {
+                    atropa.wtf.htmlElement('I am the bestest poet ever.');
+                }
                 it('must throw "[...] is not supported in this environment"',
                     function () {
-                        function x () {
-                            try {
-                                atropa.wtf.htmlElement('I am the bestest poet ever.');
-                            } catch (e) {
-                                return e;
-                            }
-                        }
-                        expect(x()).toMatch(/is not supported in this environment/);
+                        expect(x).toThrow('The atropa.wtfHtmlElement class is unsupported in this environment.');
                     }
                 );
                 it('must set atropa.data.wtfHtmlElement.support to "unsupported"',

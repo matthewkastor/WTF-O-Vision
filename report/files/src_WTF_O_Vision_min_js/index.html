@@ -45,11 +45,11 @@
   <div class="row">
     <div class="span6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
-      <p class="stat">71.29</p>
+      <p class="stat">71.15</p>
     </div>
     <div class="span6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
-      <p class="stat">848</p>
+      <p class="stat">843</p>
     </div>
   </div>
   <div class="row historical">
@@ -63,11 +63,11 @@
   <div class="row">
     <div class="span6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty"></i></a></h2>
-      <p class="stat">28.85</p>
+      <p class="stat">28.69</p>
     </div>
     <div class="span6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
-      <p class="stat">10.41</p>
+      <p class="stat">10.34</p>
     </div>
   </div>
 </div>
@@ -125,9 +125,7 @@ atropa.requires = function (className, requirementFn, errorMessage) {
             if (typeof requirementFn !== &#039;function&#039;) {
                 requirementFn = false;
             }
-            if (typeof errorMessage !== &#039;string&#039;) {
-                errorMessage = &#039;The atropa.&#039; + className + &#039; class is unsupported in this environment.&#039;;
-            }
+            errorMessage = errorMessage || &#039;The atropa.&#039; + className + &#039; class is unsupported in this environment.&#039;;
             try {
                 test = requirementFn();
             } catch (e) {
@@ -245,9 +243,7 @@ atropa.arrays.sortNumerically = function sortNumerically(arr) {
 };
 atropa.arrays.sortAlphabetically = function sortAlphabetically(arr) {
     &#039;use strict&#039;;
-    return arr.sort(function (a, b) {
-        return a.localeCompare(b);
-    });
+    throw new Error(&#039;String.prototype.localeCompare is not standardized&#039;);
 };
 atropa.arrays.deleteElement = function (arr, index) {
     &#039;use strict&#039;;
@@ -289,15 +285,14 @@ atropa.inquire.isEmptyString = function (str) {
         [
             atropa.regex,
             atropa.string.countWords,
-            atropa.setAsOptionalArg,
-            atropa.wtf.dictionary
+            atropa.setAsOptionalArg
         ].forEach(function (prerequisite) {
             if (prerequisite === undefined) {
                 supported = false;
             }
         });
         return supported;
-    }, &#039;atropa.wtf class is not supported in this environment&#039;);
+    });
 }());
 (function () {
     &#039;use strict&#039;;
@@ -309,7 +304,7 @@ atropa.inquire.isEmptyString = function (str) {
             }
         });
         return supported;
-    }, &#039;atropa.wtf class is not supported in this environment&#039;);
+    });
 }());
 atropa.wtf = {};
 atropa.wtf.dictionary = {
